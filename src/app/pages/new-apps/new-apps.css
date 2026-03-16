@@ -1,0 +1,107 @@
+.section-title{
+margin:30px 0 15px;
+font-size:22px;
+font-weight:600;
+}
+
+/* GRID */
+
+.apps{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+}
+
+/* CARD */
+
+.card{
+background:white;
+padding:18px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+/* IMAGE */
+
+.app-img{
+width:90px;
+height:90px;
+border-radius:18px;
+object-fit:cover;
+margin-bottom:8px;
+}
+
+/* NAME */
+
+.app-name{
+font-size:16px;
+margin:5px 0;
+}
+
+/* BONUS */
+
+.bonus{
+color:#27ae60;
+font-weight:bold;
+margin-top:5px;
+}
+
+/* BUTTON */
+
+.install-btn{
+background:linear-gradient(90deg,#00c853,#00e676);
+border:none;
+padding:10px 18px;
+border-radius:25px;
+color:white;
+font-weight:bold;
+cursor:pointer;
+margin-top:10px;
+}
+
+/* RESPONSIVE */
+
+/* Tablet */
+
+@media(max-width:1024px){
+
+.apps{
+grid-template-columns:repeat(3,1fr);
+}
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.apps{
+grid-template-columns:repeat(2,1fr);
+}
+
+.app-img{
+width:70px;
+height:70px;
+}
+
+}
+
+/* Small Mobile */
+
+@media(max-width:480px){
+
+.apps{
+grid-template-columns:1fr;
+}
+
+.install-btn{
+width:100%;
+}
+
+}

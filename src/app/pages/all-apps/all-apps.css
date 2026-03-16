@@ -1,0 +1,157 @@
+/* CONTAINER */
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:15px;
+}
+
+/* TITLE */
+
+.section-title{
+margin:25px 0 15px;
+font-size:24px;
+font-weight:600;
+}
+
+/* GRID */
+
+.apps{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+}
+
+/* CARD */
+
+.card{
+background:white;
+padding:18px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+position:relative;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* IMAGE */
+
+.card img{
+width:90px;
+height:90px;
+border-radius:18px;
+object-fit:cover;
+margin-bottom:8px;
+}
+
+/* POPULAR TAG */
+
+.popular{
+position:absolute;
+top:10px;
+left:10px;
+background:#ff4757;
+color:white;
+padding:4px 8px;
+font-size:12px;
+border-radius:8px;
+}
+
+/* RATING */
+
+.rating{
+display:flex;
+justify-content:center;
+gap:2px;
+font-size:14px;
+margin:6px 0;
+}
+
+.grey{
+color:#ddd;
+}
+
+/* DOWNLOADS */
+
+.downloads{
+font-size:13px;
+color:#777;
+}
+
+/* BONUS */
+
+.bonus{
+color:#27ae60;
+font-weight:bold;
+margin-top:5px;
+}
+
+/* BUTTON */
+
+.install-btn{
+background:linear-gradient(90deg,#00c853,#00e676);
+border:none;
+padding:10px 18px;
+border-radius:25px;
+color:white;
+font-weight:bold;
+cursor:pointer;
+margin-top:10px;
+transition:0.2s;
+}
+
+.install-btn:hover{
+opacity:0.9;
+}
+
+/* ================= */
+/* RESPONSIVE */
+/* ================= */
+
+/* TABLET */
+
+@media(max-width:1024px){
+
+.apps{
+grid-template-columns:repeat(3,1fr);
+}
+
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.section-title{
+font-size:20px;
+}
+
+.apps{
+grid-template-columns:repeat(2,1fr);
+}
+
+.card img{
+width:75px;
+height:75px;
+}
+
+}
+
+/* SMALL MOBILE */
+
+@media(max-width:480px){
+
+.apps{
+grid-template-columns:1fr;
+}
+
+.install-btn{
+width:100%;
+}
+
+}

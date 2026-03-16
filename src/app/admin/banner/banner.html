@@ -1,0 +1,29 @@
+<div class="banner-container">
+
+<div class="banner-card">
+
+<h2>Update Banner</h2>
+
+<input
+type="text"
+placeholder="Banner Image Name (example: banner1.png)"
+[(ngModel)]="image"
+/>
+
+<button (click)="updateBanner()">
+Update Banner
+</button>
+
+<!-- PREVIEW -->
+
+<div class="preview" *ngIf="image">
+
+<p>Banner Preview:</p>
+
+<img [src]="'http://localhost:8080/uploads/'+image">
+
+</div>
+
+</div>
+
+</div>

@@ -1,0 +1,49 @@
+.banner-container{
+display:flex;
+justify-content:center;
+align-items:center;
+margin-top:40px;
+}
+
+.banner-card{
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 4px 15px rgba(0,0,0,0.1);
+width:350px;
+text-align:center;
+}
+
+.banner-card h2{
+margin-bottom:15px;
+}
+
+.banner-card input{
+width:100%;
+padding:8px;
+border:1px solid #ccc;
+border-radius:6px;
+margin-bottom:15px;
+}
+
+.banner-card button{
+background:#2c5364;
+color:white;
+border:none;
+padding:8px 16px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.banner-card button:hover{
+background:#203a43;
+}
+
+.preview{
+margin-top:20px;
+}
+
+.preview img{
+width:100%;
+border-radius:8px;
+}

@@ -1,0 +1,32 @@
+<h2>Manage Games</h2>
+
+<p *ngIf="loading">Loading games...</p>
+
+<p *ngIf="errorMessage">{{errorMessage}}</p>
+
+<table class="games-table" *ngIf="!loading">
+
+<tr>
+<th>ID</th>
+<th>App Name</th>
+<th>Bonus</th>
+<th>Action</th>
+</tr>
+
+<tr *ngFor="let game of games">
+
+<td>{{game.id}}</td>
+<td>{{game.appName}}</td>
+<td>₹{{game.bonus}}</td>
+
+<td>
+
+<button class="delete-btn" (click)="deleteGame(game.id)">
+Delete
+</button>
+
+</td>
+
+</tr>
+
+</table>

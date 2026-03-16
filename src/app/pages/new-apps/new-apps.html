@@ -1,0 +1,25 @@
+<h2 class="section-title">🆕 New Apps</h2>
+
+<div class="apps">
+
+<div *ngFor="let game of games" class="card">
+
+<a [routerLink]="['/app',game.id]" class="app-link">
+
+<img [src]="'http://localhost:8080/uploads/'+game.image" class="app-img">
+
+<h3 class="app-name">{{game.appName}}</h3>
+
+</a>
+
+<p class="bonus">💰 {{game.bonus}}</p>
+
+<a [href]="game.downloadLink" target="_blank">
+
+<button class="install-btn">Download</button>
+
+</a>
+
+</div>
+
+</div>

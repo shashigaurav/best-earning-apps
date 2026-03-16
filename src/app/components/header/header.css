@@ -1,0 +1,212 @@
+/* NAVBAR */
+
+.navbar{
+position:sticky;
+top:0;
+width:100%;
+background:linear-gradient(90deg,#0f2027,#203a43,#2c5364);
+z-index:1000;
+box-shadow:0 3px 10px rgba(0,0,0,0.2);
+}
+
+/* CONTAINER */
+
+.nav-container{
+max-width:1200px;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:10px 15px;
+gap:15px;
+flex-wrap:wrap;
+}
+
+/* LOGO */
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+color:white;
+font-size:20px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.logo img{
+width:50px;
+height:50px;
+border-radius:12px;
+object-fit:cover;
+}
+
+/* SEARCH */
+
+.search-box{
+position:relative;
+flex:1;
+max-width:350px;
+}
+
+.search-box input{
+width:100%;
+padding:9px 38px 9px 14px;
+border:none;
+border-radius:25px;
+outline:none;
+font-size:14px;
+}
+
+/* CLEAR ICON */
+
+.clear-icon{
+position:absolute;
+right:12px;
+top:50%;
+transform:translateY(-50%);
+cursor:pointer;
+font-size:14px;
+color:#666;
+}
+
+/* SEARCH RESULTS */
+
+.search-results{
+position:absolute;
+top:42px;
+width:100%;
+background:white;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+z-index:999;
+max-height:250px;
+overflow-y:auto;
+}
+
+.result-item{
+display:flex;
+align-items:center;
+gap:10px;
+padding:8px 10px;
+cursor:pointer;
+}
+
+.result-item:hover{
+background:#f2f2f2;
+}
+
+.result-item img{
+width:36px;
+height:36px;
+border-radius:8px;
+object-fit:cover;
+}
+
+/* NAV LINKS */
+
+nav{
+display:flex;
+gap:18px;
+align-items:center;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-weight:500;
+font-size:15px;
+}
+
+nav a:hover{
+color:#00e676;
+}
+
+/* TELEGRAM BUTTON */
+
+.telegram{
+background:#0088cc;
+padding:7px 14px;
+border-radius:20px;
+color:white;
+font-weight:bold;
+}
+
+.telegram:hover{
+background:#0099ff;
+}
+
+/* MENU ICON */
+
+.menu-icon{
+display:none;
+font-size:24px;
+color:white;
+cursor:pointer;
+}
+
+/* ================= */
+/* TABLET */
+/* ================= */
+
+@media(max-width:900px){
+
+.search-box{
+max-width:250px;
+}
+
+}
+
+/* ================= */
+/* MOBILE */
+/* ================= */
+
+@media(max-width:768px){
+
+.nav-container{
+flex-wrap:wrap;
+}
+
+.logo img{
+width:45px;
+height:45px;
+}
+
+/* SEARCH FULL WIDTH */
+
+.search-box{
+order:3;
+width:100%;
+max-width:100%;
+margin-top:8px;
+}
+
+/* MENU BUTTON */
+
+.menu-icon{
+display:block;
+}
+
+/* NAV MENU */
+
+nav{
+position:absolute;
+top:70px;
+left:0;
+width:100%;
+background:#1e272e;
+flex-direction:column;
+display:none;
+padding:15px 0;
+gap:14px;
+}
+
+nav.active{
+display:flex;
+}
+
+nav a{
+font-size:16px;
+}
+
+}

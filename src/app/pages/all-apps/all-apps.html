@@ -1,0 +1,44 @@
+<div class="container">
+
+<h2 class="section-title">All Apps</h2>
+
+<div class="apps" *ngIf="games.length>0">
+
+<div *ngFor="let game of games" class="card">
+
+<div class="popular" *ngIf="game.popular">🔥 Popular</div>
+
+<a [routerLink]="['/app',game.id]">
+
+<img [src]="'http://localhost:8080/uploads/'+game.image">
+
+<h3>{{game.appName}}</h3>
+
+</a>
+
+<div class="rating">
+
+<span *ngFor="let s of [1,2,3,4,5]">
+<span *ngIf="s<=game.rating">⭐</span>
+<span *ngIf="s>game.rating" class="grey">⭐</span>
+</span>
+
+</div>
+
+<p class="downloads">📥 {{game.downloads}} Downloads</p>
+
+<p class="bonus">₹{{game.bonus}}</p>
+
+<a [href]="game.downloadLink" target="_blank">
+
+<button class="install-btn">Install & Earn</button>
+
+</a>
+
+</div>
+
+</div>
+
+<p *ngIf="games.length==0">No apps available</p>
+
+</div>

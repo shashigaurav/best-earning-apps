@@ -1,0 +1,66 @@
+<div class="app-container">
+
+<div class="app-header">
+
+<img [src]="'http://localhost:8080/uploads/'+game.image">
+
+<div class="app-info">
+
+<h2>{{game.appName}}</h2>
+
+<p class="apk">{{game.gameTitle}} APK</p>
+
+<div class="stats">
+
+<span>⭐ 4.1 Ratings</span>
+<span>📦 50-100 MB</span>
+<span>🆓 Free</span>
+<span class="bonus">₹{{game.bonus}} Bonus</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<a [href]="game.downloadLink" target="_blank" class="download-btn">
+
+DOWNLOAD {{game.appName}} APK
+
+</a>
+
+
+<a href="#" class="telegram-btn">
+
+Join Our Telegram Channel
+
+</a>
+
+
+<h3 class="related-title">Other Related Apps</h3>
+
+
+<div class="related-apps">
+
+<div *ngFor="let g of relatedGames" class="related-card">
+
+<img [src]="'http://localhost:8080/uploads/'+g.image">
+
+<div class="related-info">
+
+<h4>{{g.appName}}</h4>
+
+<p class="bonus">🎁 Sign Up Bonus ₹{{g.bonus}}</p>
+
+<p class="withdraw">🏦 Min Withdraw ₹100</p>
+
+</div>
+
+<a [href]="g.downloadLink" class="small-btn">Download</a>
+
+</div>
+
+</div>
+
+</div>

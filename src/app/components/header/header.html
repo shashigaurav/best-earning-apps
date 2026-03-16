@@ -1,0 +1,89 @@
+<header class="navbar">
+
+<div class="nav-container">
+
+<!-- LOGO -->
+
+<div class="logo">
+
+<img src="/logo.png" alt="BestEarningApps">
+
+<span>BestEarningApps</span>
+
+</div>
+
+
+<!-- SEARCH -->
+
+<div class="search-box">
+
+<input
+type="text"
+placeholder="🔍 Search apps..."
+[(ngModel)]="searchText"
+(input)="liveSearch()"
+(keyup.enter)="search()"
+/>
+
+<span
+class="clear-icon"
+*ngIf="searchText"
+(click)="clearSearch()"
+>
+✖
+</span>
+
+
+<!-- SEARCH RESULTS -->
+
+<div class="search-results" *ngIf="results.length">
+
+<div
+class="result-item"
+*ngFor="let g of results"
+(click)="openApp(g.id)"
+>
+
+<img [src]="'http://localhost:8080/uploads/'+g.image">
+
+<span>{{g.appName}}</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- NAV LINKS -->
+
+<nav [class.active]="menuOpen">
+
+<a routerLink="/">Home</a>
+
+<a routerLink="/all-apps">All Apps</a>
+
+<a routerLink="/new-apps">New Apps</a>
+
+<a
+href="https://t.me/yourtelegram"
+target="_blank"
+class="telegram"
+>
+Join Telegram
+</a>
+
+</nav>
+
+
+<!-- MOBILE MENU BUTTON -->
+
+<div class="menu-icon" (click)="toggleMenu()">
+
+☰
+
+</div>
+
+</div>
+
+</header>
