@@ -12,32 +12,59 @@ import { CommonModule } from '@angular/common'
 })
 export class AddGame {
 
-  appName: string = ""
-  gameTitle: string = ""
-  bonus: string = ""
-  keywords: string = ""
-  downloadLink: string = ""
-  category: string = "all apps"
+  appName = ""
+  gameTitle = ""
+  bonus = ""
+  keywords = ""
+  downloadLink = ""
+  category = "all apps"
 
-  imageName: string = ""
+  imageName = ""
+  loading = false
+  message = ""
+  error = ""
 
-  uploadApi = "http://localhost:8080/upload"
-  addGameApi = "http://localhost:8080/admin/games"
+  // 🔥 LIVE BACKEND
+  uploadApi = "https://best-earning-apps-backend.onrender.com/upload"
+  addGameApi = "https://best-earning-apps-backend.onrender.com/admin/games"
 
   constructor(private http: HttpClient) {}
 
+  /* IMAGE UPLOAD */
   uploadImage(event: any) {
+
     const file = event.target.files[0]
+
+    if(!file){
+      this.error = "Select image ❌"
+      return
+    }
 
     const formData = new FormData()
     formData.append("file", file)
 
-    this.http.post<any>(this.uploadApi, formData).subscribe(res => {
-      this.imageName = res.fileName
+    this.http.post<any>(this.uploadApi, formData).subscribe({
+      next: (res) => {
+        this.imageName = res.fileName
+        this.message = "Image uploaded ✅"
+      },
+      error: () => {
+        this.error = "Upload failed ❌"
+      }
     })
   }
 
+  /* ADD GAME */
   addGame() {
+
+    if(!this.appName || !this.downloadLink){
+      this.error = "Fill required fields ❌"
+      return
+    }
+
+    this.loading = true
+    this.message = ""
+    this.error = ""
 
     const data = {
       appName: this.appName,
@@ -49,8 +76,23 @@ export class AddGame {
       category: this.category
     }
 
-    this.http.post(this.addGameApi, data).subscribe(() => {
-      alert("Game Added Successfully")
+    this.http.post(this.addGameApi, data).subscribe({
+      next: () => {
+        this.loading = false
+        this.message = "Game Added Successfully ✅"
+
+        // 🔥 RESET FORM
+        this.appName = ""
+        this.gameTitle = ""
+        this.bonus = ""
+        this.keywords = ""
+        this.downloadLink = ""
+        this.imageName = ""
+      },
+      error: () => {
+        this.loading = false
+        this.error = "Failed to add game ❌"
+      }
     })
 
   }

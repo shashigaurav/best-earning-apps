@@ -1,62 +1,78 @@
-import { Routes } from '@angular/router';
+import { Routes } from '@angular/router'
 
-import { Home } from './pages/home/home';
-import { AllApps } from './pages/all-apps/all-apps';
-import { NewApps } from './pages/new-apps/new-apps';
-import { AppDetails } from './pages/app-details/app-details';
+import { Home } from './pages/home/home'
+import { AllApps } from './pages/all-apps/all-apps'
+import { NewApps } from './pages/new-apps/new-apps'
+import { AppDetails } from './pages/app-details/app-details'
 
-import { Login } from './admin/login/login';
-import { Dashboard } from './admin/dashboard/dashboard';
-import { AddGame } from './admin/add-game/add-game';
-import { ManageGames } from './admin/manage-games/manage-games';
+import { Login } from './admin/login/login'
+import { Dashboard } from './admin/dashboard/dashboard'
+import { AddGame } from './admin/add-game/add-game'
+import { ManageGames } from './admin/manage-games/manage-games'
+
+// 🔥 IMPORT GUARD
+import { AdminGuard } from './guards/admin.guard'
 
 export const routes: Routes = [
 
-{
-path:'',
-component:Home
-},
+  // =================
+  // PUBLIC ROUTES
+  // =================
 
-{
-path:'all-apps',
-component:AllApps
-},
+  {
+    path:'',
+    component:Home
+  },
 
-{
-path:'new-apps',
-component:NewApps
-},
+  {
+    path:'all-apps',
+    component:AllApps
+  },
 
-{
-path:'app/:id',
-component:AppDetails
-},
+  {
+    path:'new-apps',
+    component:NewApps
+  },
 
-/* ADMIN */
+  {
+    path:'app/:id',
+    component:AppDetails
+  },
 
-{
-path:'admin/login',
-component:Login
-},
+  // =================
+  // ADMIN ROUTES
+  // =================
 
-{
-path:'admin/dashboard',
-component:Dashboard
-},
+  {
+    path:'admin/login',
+    component:Login
+  },
 
-{
-path:'admin/add-game',
-component:AddGame
-},
+  {
+    path:'admin/dashboard',
+    component:Dashboard,
+    canActivate:[AdminGuard]   // 🔐 PROTECTED
+  },
 
-{
-path:'admin/manage-games',
-component:ManageGames
-},
+  {
+    path:'admin/add-game',
+    component:AddGame,
+    canActivate:[AdminGuard]   // 🔐 PROTECTED
+  },
 
-{
-path:'**',
-redirectTo:''
-}
+  {
+    path:'admin/manage-games',
+    component:ManageGames,
+    canActivate:[AdminGuard]   // 🔐 PROTECTED
+  },
 
-];
+  // =================
+  // FALLBACK
+  // =================
+
+  {
+    path:'**',
+    redirectTo:''
+  }
+
+]

@@ -4,78 +4,65 @@ import { Game } from '../../models/game'
 import { GameService } from '../../services/game'
 
 @Component({
-
-selector:'manage-games',
-standalone:true,
-imports:[CommonModule],
-templateUrl:'./manage-games.html',
-styleUrls:['./manage-games.css']
-
+  selector:'manage-games',
+  standalone:true,
+  imports:[CommonModule],
+  templateUrl:'./manage-games.html',
+  styleUrls:['./manage-games.css']
 })
-
 export class ManageGames implements OnInit{
 
-games:Game[]=[]
-loading=true
-errorMessage=""
+  games:Game[]=[]
+  loading=true
+  errorMessage=""
+  successMessage=""
 
-constructor(private gameService:GameService){}
+  constructor(private gameService:GameService){}
 
-ngOnInit(){
+  ngOnInit(){
+    this.loadGames()
+  }
 
-this.loadGames()
+  loadGames(){
 
-}
+    this.loading=true
+    this.errorMessage=""
 
-loadGames(){
+    this.gameService.getGames().subscribe({
 
-this.loading=true
+      next:(data:Game[])=>{
+        this.games=data
+        this.loading=false
+      },
 
-this.gameService.getGames().subscribe({
+      error:()=>{
+        this.errorMessage="Failed to load games ❌"
+        this.loading=false
+      }
 
-next:(data:Game[])=>{
+    })
 
-this.games=data
-this.loading=false
+  }
 
-},
+  deleteGame(id:number){
 
-error:(error)=>{
+    if(!confirm("Delete this game?")){
+      return
+    }
 
-console.error(error)
-this.errorMessage="Failed to load games"
-this.loading=false
+    this.gameService.deleteGame(id).subscribe({
 
-}
+      next:()=>{
+        this.successMessage="Game deleted successfully ✅"
+        this.loadGames()
+      },
 
-})
+      error:()=>{
+        this.errorMessage="Delete failed ❌"
+      }
 
-}
+    })
 
-deleteGame(id:number){
-
-if(!confirm("Are you sure you want to delete this game?")){
-return
-}
-
-this.gameService.deleteGame(id).subscribe({
-
-next:()=>{
-
-alert("Game Deleted Successfully")
-this.loadGames()
-
-},
-
-error:(error)=>{
-
-console.error(error)
-alert("Delete failed")
-
-}
-
-})
-
-}
+  }
 
 }

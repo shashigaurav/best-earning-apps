@@ -1,15 +1,36 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Component, OnInit } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { Router } from '@angular/router'
+import { GameService } from '../../services/game'
 
 @Component({
-
-selector:'admin-dashboard',
-standalone:true,
-imports:[CommonModule,RouterModule],
-templateUrl:'./dashboard.html',
-styleUrl:'./dashboard.css'
-
+  standalone:true,
+  imports:[CommonModule],
+  templateUrl:'./dashboard.html',
+  styleUrls:['./dashboard.css']
 })
+export class Dashboard implements OnInit{
 
-export class Dashboard{}
+  totalGames = 0
+  newApps = 0
+
+  constructor(
+    private router:Router,
+    private gameService:GameService
+  ){}
+
+  ngOnInit(){
+
+    this.gameService.getGames().subscribe(data=>{
+      this.totalGames = data.length
+      this.newApps = data.filter(g=>g.category === 'new apps').length
+    })
+
+  }
+
+  logout(){
+    localStorage.removeItem('admin')
+    this.router.navigate(['/admin/login'])
+  }
+
+}

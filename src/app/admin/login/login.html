@@ -1,11 +1,24 @@
 <div class="form-card">
 
-<h2>Admin Login</h2>
+  <h2>Admin Login</h2>
 
-<input type="text" placeholder="Username" [(ngModel)]="username">
+  <input 
+    type="text" 
+    placeholder="Username"
+    [(ngModel)]="username"
+  >
 
-<input type="password" placeholder="Password" [(ngModel)]="password">
+  <input 
+    type="password" 
+    placeholder="Password"
+    [(ngModel)]="password"
+  >
 
-<button (click)="login()">Login</button>
+  <button (click)="login()" [disabled]="loading">
+    {{loading ? 'Logging in...' : 'Login'}}
+  </button>
+
+  <!-- ERROR MESSAGE -->
+  <p class="error" *ngIf="error">{{error}}</p>
 
 </div>

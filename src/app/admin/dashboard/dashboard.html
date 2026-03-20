@@ -1,26 +1,38 @@
-<div class="admin-header">
+<div class="dashboard">
 
-<h2>Admin Dashboard</h2>
+  <h1>🚀 Admin Dashboard</h1>
 
-<a routerLink="/">View Website</a>
+  <!-- STATS -->
+  <div class="stats">
 
-</div>
+    <div class="card">
+      <h3>Total Apps</h3>
+      <p>{{totalGames}}</p>
+    </div>
 
-<div class="admin-menu">
+    <div class="card">
+      <h3>New Apps</h3>
+      <p>{{newApps}}</p>
+    </div>
 
-<a routerLink="/admin/add-game" class="admin-card">
-<h3>Add Game</h3>
-<p>Add new earning apps</p>
-</a>
+  </div>
 
-<a routerLink="/admin/manage-games" class="admin-card">
-<h3>Manage Games</h3>
-<p>Edit or delete apps</p>
-</a>
+  <!-- ACTIONS -->
+  <div class="actions">
 
-<a routerLink="/admin/banner" class="admin-card">
-<h3>Update Banner</h3>
-<p>Change homepage banner</p>
-</a>
+    <a routerLink="/admin/add-game" class="action-card">
+      ➕ Add Game
+    </a>
+
+    <a routerLink="/admin/manage-games" class="action-card">
+      ⚙ Manage Games
+    </a>
+
+  </div>
+
+  <!-- LOGOUT -->
+  <button class="logout-btn" (click)="logout()">
+    Logout
+  </button>
 
 </div>

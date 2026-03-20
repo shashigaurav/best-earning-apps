@@ -1,105 +1,103 @@
-/* RESET */
+/* ================= */
+/* PAGE */
+/* ================= */
 
-body{
-margin:0;
-font-family:Arial, Helvetica, sans-serif;
-background:#f4f6f9;
+.dashboard{
+  max-width:1000px;
+  margin:40px auto;
+  padding:20px;
+  text-align:center;
 }
 
-/* HEADER */
+/* TITLE */
 
-.admin-header{
-background:#111827;
-color:white;
-padding:15px 25px;
-display:flex;
-justify-content:space-between;
-align-items:center;
+.dashboard h1{
+  margin-bottom:25px;
 }
 
-.admin-header h2{
-margin:0;
+/* ================= */
+/* STATS */
+/* ================= */
+
+.stats{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  margin-bottom:30px;
+  flex-wrap:wrap;
 }
 
-/* MENU */
-
-.admin-menu{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-padding:20px;
-justify-content:center;
+.card{
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  width:200px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
-/* CARD BUTTON */
-
-.admin-card{
-background:white;
-padding:25px;
-border-radius:12px;
-box-shadow:0 4px 20px rgba(0,0,0,0.1);
-text-align:center;
-width:200px;
-text-decoration:none;
-color:#333;
-transition:0.3s;
+.card h3{
+  margin-bottom:10px;
 }
 
-.admin-card:hover{
-transform:translateY(-5px);
-box-shadow:0 8px 30px rgba(0,0,0,0.2);
+.card p{
+  font-size:24px;
+  font-weight:bold;
+  color:#00c853;
 }
 
-/* FORM CARD */
+/* ================= */
+/* ACTIONS */
+/* ================= */
 
-.form-card{
-max-width:420px;
-margin:30px auto;
-background:white;
-padding:30px;
-border-radius:12px;
-box-shadow:0 6px 25px rgba(0,0,0,0.15);
+.actions{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  flex-wrap:wrap;
 }
 
-/* INPUT */
-
-.form-card input,
-.form-card select{
-width:100%;
-padding:12px;
-margin-bottom:12px;
-border-radius:8px;
-border:1px solid #ddd;
+.action-card{
+  display:block;
+  padding:15px 25px;
+  background:linear-gradient(90deg,#00c853,#00e676);
+  color:white;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:600;
+  transition:0.3s;
 }
 
-/* BUTTON */
-
-.form-card button{
-width:100%;
-padding:12px;
-border:none;
-border-radius:8px;
-background:linear-gradient(90deg,#ff512f,#dd2476);
-color:white;
-font-weight:bold;
-cursor:pointer;
+.action-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 5px 15px rgba(0,200,83,0.4);
 }
 
-/* MOBILE RESPONSIVE */
+/* ================= */
+/* LOGOUT */
+/* ================= */
 
-@media (max-width:600px){
-
-.admin-menu{
-flex-direction:column;
-align-items:center;
+.logout-btn{
+  margin-top:30px;
+  padding:10px 20px;
+  background:#ff5252;
+  border:none;
+  color:white;
+  border-radius:10px;
+  cursor:pointer;
 }
 
-.admin-card{
-width:90%;
+.logout-btn:hover{
+  background:#ff0000;
 }
 
-.form-card{
-width:90%;
-}
+/* ================= */
+/* MOBILE */
+/* ================= */
+
+@media(max-width:768px){
+
+  .card{
+    width:100%;
+  }
 
 }

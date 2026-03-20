@@ -1,32 +1,49 @@
-<h2>Manage Games</h2>
+<div class="manage-container">
 
-<p *ngIf="loading">Loading games...</p>
+  <h2>Manage Games</h2>
 
-<p *ngIf="errorMessage">{{errorMessage}}</p>
+  <!-- LOADING -->
+  <p *ngIf="loading" class="loading">Loading games...</p>
 
-<table class="games-table" *ngIf="!loading">
+  <!-- ERROR -->
+  <p *ngIf="errorMessage" class="error">{{errorMessage}}</p>
 
-<tr>
-<th>ID</th>
-<th>App Name</th>
-<th>Bonus</th>
-<th>Action</th>
-</tr>
+  <!-- SUCCESS -->
+  <p *ngIf="successMessage" class="success">{{successMessage}}</p>
 
-<tr *ngFor="let game of games">
+  <!-- TABLE -->
+  <table class="games-table" *ngIf="!loading">
 
-<td>{{game.id}}</td>
-<td>{{game.appName}}</td>
-<td>₹{{game.bonus}}</td>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>App</th>
+        <th>Bonus</th>
+        <th>Action</th>
+      </tr>
+    </thead>
 
-<td>
+    <tbody>
+      <tr *ngFor="let game of games">
 
-<button class="delete-btn" (click)="deleteGame(game.id)">
-Delete
-</button>
+        <td>{{game.id}}</td>
 
-</td>
+        <td class="app-cell">
+          <img [src]="'http://localhost:8080/uploads/'+game.image">
+          <span>{{game.appName}}</span>
+        </td>
 
-</tr>
+        <td>₹{{game.bonus}}</td>
 
-</table>
+        <td>
+          <button class="delete-btn" (click)="deleteGame(game.id)">
+            Delete
+          </button>
+        </td>
+
+      </tr>
+    </tbody>
+
+  </table>
+
+</div>

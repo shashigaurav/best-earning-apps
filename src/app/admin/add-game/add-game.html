@@ -1,26 +1,32 @@
 <div class="form-card">
 
-<h2>Add Game</h2>
+  <h2>Add New Game</h2>
 
-<input type="text" placeholder="App Name" [(ngModel)]="appName">
+  <input type="text" placeholder="App Name" [(ngModel)]="appName">
 
-<input type="text" placeholder="Game Title" [(ngModel)]="gameTitle">
+  <input type="text" placeholder="Game Title" [(ngModel)]="gameTitle">
 
-<input type="text" placeholder="Bonus" [(ngModel)]="bonus">
+  <input type="text" placeholder="Bonus ₹" [(ngModel)]="bonus">
 
-<input type="file" (change)="uploadImage($event)">
+  <input type="file" (change)="uploadImage($event)">
 
-<input type="text" placeholder="Keywords" [(ngModel)]="keywords">
+  <input type="text" placeholder="Keywords" [(ngModel)]="keywords">
 
-<input type="text" placeholder="Download Link" [(ngModel)]="downloadLink">
+  <input type="text" placeholder="Download Link" [(ngModel)]="downloadLink">
 
-<select [(ngModel)]="category">
+  <select [(ngModel)]="category">
+    <option value="all apps">All Apps</option>
+    <option value="new apps">New Apps</option>
+  </select>
 
-<option value="all apps">All Apps</option>
-<option value="new apps">New Apps</option>
+  <button (click)="addGame()" [disabled]="loading">
+    {{loading ? 'Adding...' : 'Add Game'}}
+  </button>
 
-</select>
+  <!-- SUCCESS -->
+  <p class="success" *ngIf="message">{{message}}</p>
 
-<button (click)="addGame()">Add Game</button>
+  <!-- ERROR -->
+  <p class="error" *ngIf="error">{{error}}</p>
 
 </div>
