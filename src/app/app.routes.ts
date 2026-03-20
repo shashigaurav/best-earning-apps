@@ -9,9 +9,10 @@ import { Login } from './admin/login/login'
 import { Dashboard } from './admin/dashboard/dashboard'
 import { AddGame } from './admin/add-game/add-game'
 import { ManageGames } from './admin/manage-games/manage-games'
+import { AdminGuard } from './guards/admin-guard'
 
 // 🔥 IMPORT GUARD
-import { AdminGuard } from './guards/admin.guard'
+
 
 export const routes: Routes = [
 
