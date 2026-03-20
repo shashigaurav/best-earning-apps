@@ -1,66 +1,115 @@
-<div class="app-container">
+<div class="details-container" *ngIf="game">
 
-<div class="app-header">
+  <!-- HEADER -->
+  <div class="app-header">
 
-<img [src]="'http://localhost:8080/uploads/'+game.image">
+    <img 
+      [src]="'http://localhost:8080/uploads/' + game.image" 
+      [alt]="game.appName + ' earning app screenshot'"
+    >
 
-<div class="app-info">
+    <div class="app-info">
+      <h1>{{game.appName}} Earning App Review 2026</h1>
 
-<h2>{{game.appName}}</h2>
+      <div class="rating">
+        <span *ngFor="let s of [1,2,3,4,5]">
+          <span *ngIf="s <= game.rating">⭐</span>
+          <span *ngIf="s > game.rating" class="grey">⭐</span>
+        </span>
+        <span>{{game.rating}} / 5</span>
+      </div>
 
-<p class="apk">{{game.gameTitle}} APK</p>
+      <p class="downloads">📥 {{game.downloads}}+ Downloads</p>
+      <p class="bonus">💰 Bonus ₹{{game.bonus}}</p>
 
-<div class="stats">
+      <a [href]="game.downloadLink" target="_blank" rel="noopener">
+        <button class="install-btn">Install & Earn</button>
+      </a>
+    </div>
 
-<span>⭐ 4.1 Ratings</span>
-<span>📦 50-100 MB</span>
-<span>🆓 Free</span>
-<span class="bonus">₹{{game.bonus}} Bonus</span>
+  </div>
 
-</div>
+  <!-- CONTENT -->
+  <div class="content">
 
-</div>
+    <h2>About {{game.appName}}</h2>
+    <p>
+      {{game.appName}} is one of the best earning apps in India 2026. Users can earn real money by completing tasks, referring friends, and playing games.
+    </p>
 
-</div>
+    <h2>How to Earn Money from {{game.appName}}</h2>
+    <ul>
+      <li>Complete tasks</li>
+      <li>Refer & earn</li>
+      <li>Play games</li>
+      <li>Withdraw easily</li>
+    </ul>
 
+    <h2>Withdrawal Proof & Payment</h2>
+    <p>
+      Fast withdrawal via UPI, Paytm and bank transfer. Minimum ₹50.
+    </p>
 
-<a [href]="game.downloadLink" target="_blank" class="download-btn">
+    <h2>Pros and Cons</h2>
 
-DOWNLOAD {{game.appName}} APK
+    <div class="pros-cons">
+      <div class="pros">
+        <h3>Pros</h3>
+        <ul>
+          <li>Easy earning</li>
+          <li>Fast withdrawal</li>
+        </ul>
+      </div>
 
-</a>
+      <div class="cons">
+        <h3>Cons</h3>
+        <ul>
+          <li>Ads</li>
+          <li>Variable income</li>
+        </ul>
+      </div>
+    </div>
 
+    <!-- 🔥 FAQ SCHEMA -->
+    <div class="faq" itemscope itemtype="https://schema.org/FAQPage">
 
-<a href="#" class="telegram-btn">
+      <h2>FAQs</h2>
 
-Join Our Telegram Channel
+      <div itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+        <h4 itemprop="name">Is {{game.appName}} real or fake?</h4>
+        <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <span itemprop="text">
+            {{game.appName}} is a legitimate earning app. Always verify before investing.
+          </span>
+        </p>
+      </div>
 
-</a>
+      <div itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+        <h4 itemprop="name">How much can I earn?</h4>
+        <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <span itemprop="text">
+            You can earn ₹100–₹500 daily depending on activity.
+          </span>
+        </p>
+      </div>
 
+    </div>
 
-<h3 class="related-title">Other Related Apps</h3>
+  </div>
 
+  <!-- RELATED -->
+  <h2 class="section-title">🔥 Related Apps</h2>
 
-<div class="related-apps">
-
-<div *ngFor="let g of relatedGames" class="related-card">
-
-<img [src]="'http://localhost:8080/uploads/'+g.image">
-
-<div class="related-info">
-
-<h4>{{g.appName}}</h4>
-
-<p class="bonus">🎁 Sign Up Bonus ₹{{g.bonus}}</p>
-
-<p class="withdraw">🏦 Min Withdraw ₹100</p>
-
-</div>
-
-<a [href]="g.downloadLink" class="small-btn">Download</a>
-
-</div>
-
-</div>
+  <div class="related">
+    <div *ngFor="let g of relatedGames" class="card">
+      <a [routerLink]="['/app', g.id]">
+        <img 
+          [src]="'http://localhost:8080/uploads/' + g.image" 
+          [alt]="g.appName"
+        >
+        <h3>{{g.appName}}</h3>
+      </a>
+    </div>
+  </div>
 
 </div>

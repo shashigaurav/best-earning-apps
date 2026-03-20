@@ -1,172 +1,107 @@
 <div class="container">
 
-<!-- BANNER -->
-<app-banner></app-banner>
+  <!-- 🔥 MAIN H1 (VERY IMPORTANT SEO) -->
+  <h1 class="main-title">
+    Top Earning Apps in India 2026 – Earn Money Online Without Investment
+  </h1>
+
+  <!-- BANNER -->
+  <app-banner></app-banner>
+
+  <!-- NOTICE -->
+  <div class="notice-bar">
+    <div class="notice-track">
+      <span>
+        📢 New earning apps added daily |
+        ⚠ Never share OTP |
+        💰 Trusted apps only
+      </span>
+    </div>
+  </div>
+
+  <!-- TRENDING -->
+  <h2 class="section-title">🔥 Trending Earning Apps</h2>
+
+  <div class="trending-grid">
+    <div *ngFor="let game of games.slice(0,5)" class="trend-card">
+
+      <a [routerLink]="['/app', game.id]">
+        <img 
+          [src]="'http://localhost:8080/uploads/' + game.image" 
+          [alt]="game.appName + ' earning app'"
+          loading="lazy"
+        >
+        <h3>{{game.appName}}</h3>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- TOP APPS -->
+  <h2 class="section-title">🔥 Best Money Earning Apps 2026</h2>
+
+  <div class="apps">
+    <div *ngFor="let game of topGames" class="card">
+
+      <a [routerLink]="['/app', game.id]">
+        <img 
+          [src]="'http://localhost:8080/uploads/' + game.image" 
+          [alt]="game.appName + ' real earning app'"
+          loading="lazy"
+        >
+        <h3>{{game.appName}}</h3>
+      </a>
+
+      <p class="bonus">₹{{game.bonus}}</p>
+
+    </div>
+  </div>
+
+  <!-- NEW -->
+  <h2 class="section-title">🆕 New Earning Apps</h2>
+
+  <div class="apps">
+    <div *ngFor="let game of newGames" class="card">
+
+      <a [routerLink]="['/app', game.id]">
+        <img 
+          [src]="'http://localhost:8080/uploads/' + game.image" 
+          [alt]="game.appName + ' new earning app'"
+          loading="lazy"
+        >
+        <h3>{{game.appName}}</h3>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- 🔥 SEO CONTENT -->
+  <div class="seo-content">
+
+    <h2>Best Earning Apps in India</h2>
+
+    <p>
+      Discover the best earning apps in India 2026 that help you earn money online without any investment. 
+      These apps provide real income opportunities through tasks, referrals, and gaming. 
+      Our platform lists only trusted apps with verified payment proofs.
+    </p>
+
+    <h3>Why choose these apps?</h3>
+
+    <ul>
+      <li>Instant withdrawal</li>
+      <li>No investment required</li>
+      <li>High earning potential</li>
+      <li>Daily new apps added</li>
+    </ul>
+
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="warning-alert">
+    ⚠ This website provides information only. Verify before investing.
+  </div>
 
-
-<!-- NOTICE BAR -->
-
-<div class="notice-bar">
-
-<div class="notice-track">
-
-<span>
-
-📢 Notice: New earning apps added daily |
-⚠ Warning: Never share OTP or bank details |
-💰 Always download apps from official links provided here
-
-</span>
-
-</div>
-
-</div>
-
-
-<!-- TRENDING APPS -->
-
-<h2 class="section-title">🔥 Trending Apps</h2>
-
-<div class="trending-grid">
-
-<div *ngFor="let game of games.slice(0,5)" class="trend-card">
-
-<div class="popular" *ngIf="game.popular">🔥 Popular</div>
-
-<a [routerLink]="['/app',game.id]">
-
-<img [src]="'http://localhost:8080/uploads/'+game.image">
-
-<h4>{{game.appName}}</h4>
-
-</a>
-
-<div class="rating">
-
-<span *ngFor="let s of [1,2,3,4,5]">
-
-<span *ngIf="s<=game.rating">⭐</span>
-<span *ngIf="s>game.rating" class="grey">⭐</span>
-
-</span>
-
-<span class="rating-value">{{game.rating}}</span>
-
-</div>
-
-<p class="downloads">📥 {{game.downloads}} Downloads</p>
-
-<p class="bonus">₹{{game.bonus}}</p>
-
-</div>
-
-</div>
-
-
-<!-- TOP APPS -->
-
-<h2 class="section-title">🔥 Top Earning Apps</h2>
-
-<div class="apps">
-
-<div *ngFor="let game of topGames" class="card">
-
-<div class="popular" *ngIf="game.popular">🔥 Popular</div>
-
-<a [routerLink]="['/app',game.id]">
-
-<img [src]="'http://localhost:8080/uploads/'+game.image">
-
-<h3>{{game.appName}}</h3>
-
-</a>
-
-<div class="rating">
-
-<span *ngFor="let s of [1,2,3,4,5]">
-
-<span *ngIf="s<=game.rating">⭐</span>
-<span *ngIf="s>game.rating" class="grey">⭐</span>
-
-</span>
-
-<span class="rating-value">{{game.rating}}</span>
-
-</div>
-
-<p class="downloads">📥 {{game.downloads}} Downloads</p>
-
-<p class="bonus">🔥 {{game.bonus}}</p>
-
-<a [href]="game.downloadLink" target="_blank">
-
-<button class="install-btn">Install & Earn</button>
-
-</a>
-
-</div>
-
-</div>
-
-
-<!-- NEW APPS -->
-
-<h2 class="section-title">🆕 New Apps</h2>
-
-<div class="apps">
-
-<div *ngFor="let game of newGames" class="card">
-
-<a [routerLink]="['/app',game.id]">
-
-<img [src]="'http://localhost:8080/uploads/'+game.image">
-
-<h3>{{game.appName}}</h3>
-
-</a>
-
-<div class="rating">
-
-<span *ngFor="let s of [1,2,3,4,5]">
-
-<span *ngIf="s<=game.rating">⭐</span>
-<span *ngIf="s>game.rating" class="grey">⭐</span>
-
-</span>
-
-<span class="rating-value">{{game.rating}}</span>
-
-</div>
-
-<p class="downloads">📥 {{game.downloads}} Downloads</p>
-
-<p class="bonus">🔥 {{game.bonus}}</p>
-
-<a [href]="game.downloadLink" target="_blank">
-
-<button class="install-btn">Install & Earn</button>
-
-</a>
-
-</div>
-
-</div>
-
-
-<!-- DISCLAIMER -->
-
-<div class="warning-alert">
-
-⚠ <strong>Disclaimer:</strong>
-This website only provides information about earning apps.
-We do not guarantee earnings and are not responsible for any financial loss.
-Users should verify apps before investing money.
-
-</div>
-
-
-<!-- FOOTER COMPONENT -->
-
-<app-footer></app-footer>
+  <app-footer></app-footer>
 
 </div>

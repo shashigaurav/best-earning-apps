@@ -1,5 +1,31 @@
 <div class="banner">
 
-  <img [src]="banners[current]" alt="Banner">
+  <div class="banner-slide">
+
+    <img 
+      [src]="banners[current]" 
+      alt="Earning Apps Banner"
+    >
+
+    <div class="banner-overlay">
+      <h1>💰 Best Earning Apps</h1>
+      <p>Earn daily without investment</p>
+      <button>Start Earning 🚀</button>
+    </div>
+
+  </div>
+
+  <!-- LEFT RIGHT BUTTON -->
+  <button class="nav left" (click)="prevSlide()">❮</button>
+  <button class="nav right" (click)="nextSlide()">❯</button>
+
+  <!-- DOTS -->
+  <div class="dots">
+    <span 
+      *ngFor="let b of banners; let i = index"
+      [class.active]="i === current"
+      (click)="goToSlide(i)"
+    ></span>
+  </div>
 
 </div>

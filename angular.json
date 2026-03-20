@@ -27,7 +27,9 @@
                 "input": "src/assets",
                 "output": "assets"
               },
-              "src/favicon.ico"
+              "src/favicon.ico",
+              "src/sitemap.xml",
+              "src/robots.txt"
             ],
             "styles": [
               "src/styles.css"
@@ -35,7 +37,10 @@
           },
           "configurations": {
             "production": {
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "optimization": true,
+              "sourceMap": false,
+              "extractLicenses": true
             },
             "development": {
               "optimization": false,

@@ -1,1 +1,10 @@
-<p>search works!</p>
+<div class="search-box">
+
+  <input 
+    type="text"
+    placeholder="🔍 Search earning apps..."
+    [(ngModel)]="searchText"
+    (input)="onInput()"
+  >
+
+</div>

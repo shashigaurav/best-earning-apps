@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- HOME -->
+  <url>
+    <loc>https://best-earning-apps.netlify.app/</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- STATIC PAGES -->
+  <url>
+    <loc>https://best-earning-apps.netlify.app/all-apps</loc>
+  </url>
+
+  <url>
+    <loc>https://best-earning-apps.netlify.app/new-apps</loc>
+  </url>
+
+  <!-- SAMPLE APP PAGE -->
+  <url>
+    <loc>https://best-earning-apps.netlify.app/app/1</loc>
+  </url>
+
+</urlset>
