@@ -28,8 +28,17 @@ export class Dashboard implements OnInit {
       return
     }
 
+    // 🔥 API CALL
     this.gameService.getGames().subscribe({
+
       next: (data:any[]) => {
+
+        console.log("API DATA:", data)   // 👈 IMPORTANT DEBUG
+
+        if(!data){
+          console.error("No data received from API")
+          return
+        }
 
         this.totalGames = data.length
 
@@ -38,9 +47,11 @@ export class Dashboard implements OnInit {
         ).length
 
       },
+
       error: (err) => {
         console.error("Game API error:", err)
       }
+
     })
 
   }
