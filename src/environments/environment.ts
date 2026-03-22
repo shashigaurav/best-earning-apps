@@ -1,4 +1,4 @@
 export const environment = {
-  production:false,
-  api:"https://bestearningapps-backend.onrender.com"
+production: false,
+api: "https://best-earning-apps-backend.onrender.com"
 };

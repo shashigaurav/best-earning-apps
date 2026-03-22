@@ -3,6 +3,8 @@ import { FormsModule } from '@angular/forms'
 import { HttpClient } from '@angular/common/http'
 import { CommonModule } from '@angular/common'
 import { Router } from '@angular/router'
+import { environment } from '../../../environments/environment'
+
 
 @Component({
   selector: 'admin-login',
@@ -19,8 +21,8 @@ export class Login {
   error: string = ""
   loading: boolean = false
 
-  // ✅ Correct backend API
-  api: string = "https://bestearningapps-backend.onrender.com/admin/login"
+  // API from environment
+  api: string = environment.api + "/admin/login"
 
   constructor(
     private http: HttpClient,
@@ -29,7 +31,6 @@ export class Login {
 
   login() {
 
-    // validation
     if (!this.username || !this.password) {
       this.error = "Enter username & password ❌"
       return
@@ -51,10 +52,7 @@ export class Login {
 
         if (res && res.success) {
 
-          // simple auth flag
           localStorage.setItem('admin', 'true')
-
-          // redirect to dashboard
           this.router.navigate(['/admin/dashboard'])
 
         } else {
