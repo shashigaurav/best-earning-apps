@@ -10,38 +10,32 @@ import { environment } from '../../environments/environment'
 
 export class GameService {
 
-  // backend base url
   api = environment.api + "/admin/games"
   topApi = environment.api + "/admin/top-games"
 
   constructor(private http: HttpClient) {}
 
-  /* GET ALL GAMES */
-
+  // GET ALL GAMES
   getGames(): Observable<Game[]> {
     return this.http.get<Game[]>(this.api)
   }
 
-  /* GET TOP GAMES */
-
+  // GET TOP GAMES
   getTopGames(): Observable<Game[]> {
     return this.http.get<Game[]>(this.topApi)
   }
 
-  /* ADD GAME */
-
+  // ADD GAME
   addGame(game: Game) {
     return this.http.post(this.api, game)
   }
 
-  /* UPDATE GAME */
-
+  // UPDATE GAME
   updateGame(id: number, game: Game) {
     return this.http.put(`${this.api}/${id}`, game)
   }
 
-  /* DELETE GAME */
-
+  // DELETE GAME
   deleteGame(id: number) {
     return this.http.delete(`${this.api}/${id}`)
   }

@@ -5,7 +5,7 @@ import { GameService } from '../../services/game'
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule],   // ✅ add RouterModule
+  imports: [CommonModule, RouterModule],
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css']
 })
@@ -29,12 +29,12 @@ export class Dashboard implements OnInit {
     }
 
     this.gameService.getGames().subscribe({
-      next: (data: any[]) => {
+      next: (data:any[]) => {
 
         this.totalGames = data.length
 
         this.newApps = data.filter(
-          (g: any) => g.category === 'new apps'
+          (g:any) => g.category?.toLowerCase() === 'new apps'
         ).length
 
       },
@@ -46,10 +46,8 @@ export class Dashboard implements OnInit {
   }
 
   logout() {
-
     localStorage.removeItem('admin')
     this.router.navigate(['/admin/login'])
-
   }
 
 }
