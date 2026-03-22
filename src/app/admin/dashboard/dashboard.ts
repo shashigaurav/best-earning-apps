@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { RouterModule, Router } from '@angular/router'
 import { GameService } from '../../services/game'
@@ -11,12 +11,13 @@ import { GameService } from '../../services/game'
 })
 export class Dashboard implements OnInit {
 
-  totalGames: number = 0
-  newApps: number = 0
+  totalGames = 0
+  newApps = 0
 
   constructor(
     private router: Router,
-    private gameService: GameService
+    private gameService: GameService,
+    private cd: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -32,18 +33,15 @@ export class Dashboard implements OnInit {
 
   }
 
-  /* LOAD GAMES */
-
-  loadGames() {
+  loadGames(){
 
     this.gameService.getGames().subscribe({
 
-      next: (data:any) => {
+      next: (data:any[]) => {
 
-        console.log("Games API Response:", data)
+        console.log("API DATA:", data)
 
         if(!Array.isArray(data)){
-          console.error("Invalid API response")
           return
         }
 
@@ -52,6 +50,8 @@ export class Dashboard implements OnInit {
         this.newApps = data.filter(
           (g:any) => (g.category || '').toLowerCase() === 'new apps'
         ).length
+
+        this.cd.detectChanges()   // 🔥 force UI update
 
       },
 
@@ -63,9 +63,7 @@ export class Dashboard implements OnInit {
 
   }
 
-  /* LOGOUT */
-
-  logout() {
+  logout(){
     localStorage.removeItem('admin')
     this.router.navigate(['/admin/login'])
   }
