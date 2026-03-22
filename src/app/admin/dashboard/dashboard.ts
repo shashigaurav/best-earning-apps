@@ -28,22 +28,29 @@ export class Dashboard implements OnInit {
       return
     }
 
-    // 🔥 API CALL
+    this.loadGames()
+
+  }
+
+  /* LOAD GAMES */
+
+  loadGames() {
+
     this.gameService.getGames().subscribe({
 
-      next: (data:any[]) => {
+      next: (data:any) => {
 
-        console.log("API DATA:", data)   // 👈 IMPORTANT DEBUG
+        console.log("Games API Response:", data)
 
-        if(!data){
-          console.error("No data received from API")
+        if(!Array.isArray(data)){
+          console.error("Invalid API response")
           return
         }
 
         this.totalGames = data.length
 
         this.newApps = data.filter(
-          (g:any) => g.category?.toLowerCase() === 'new apps'
+          (g:any) => (g.category || '').toLowerCase() === 'new apps'
         ).length
 
       },
@@ -55,6 +62,8 @@ export class Dashboard implements OnInit {
     })
 
   }
+
+  /* LOGOUT */
 
   logout() {
     localStorage.removeItem('admin')
