@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { Router } from '@angular/router'
+import { RouterModule, Router } from '@angular/router'
 import { GameService } from '../../services/game'
 
 @Component({
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],   // ✅ add RouterModule
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css']
 })
@@ -21,7 +21,6 @@ export class Dashboard implements OnInit {
 
   ngOnInit() {
 
-    // simple admin check
     const admin = localStorage.getItem('admin')
 
     if (!admin) {
