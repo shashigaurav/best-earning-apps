@@ -1,24 +1,26 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core'
+import { HttpClient } from '@angular/common/http'
+import { environment } from '../../environments/environment'
 
 @Injectable({
-providedIn:'root'
+  providedIn: 'root'
 })
 
-export class UploadService{
+export class UploadService {
 
-api="http://localhost:8080/admin/upload"
+  // backend upload API
+  api = environment.api + "/admin/upload"
 
-constructor(private http:HttpClient){}
+  constructor(private http: HttpClient) {}
 
-upload(file:any){
+  upload(file: any) {
 
-const formData=new FormData()
+    const formData = new FormData()
 
-formData.append("file",file)
+    formData.append("file", file)
 
-return this.http.post(this.api,formData)
+    return this.http.post(this.api, formData)
 
-}
+  }
 
 }
