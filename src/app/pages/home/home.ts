@@ -24,6 +24,8 @@ export class Home implements OnInit{
   topGames:Game[]=[]
   newGames:Game[]=[]
 
+  backendUrl="https://best-earning-apps-backend.onrender.com/uploads/"
+
   @ViewChild('trending') trending!:ElementRef
 
   constructor(
@@ -34,7 +36,7 @@ export class Home implements OnInit{
 
   ngOnInit():void{
 
-    /* 🔥 SEO META */
+    /* SEO */
 
     this.title.setTitle(
       'Top Earning Apps in India 2026 | Best Money Earning Apps'
@@ -51,7 +53,7 @@ export class Home implements OnInit{
     })
 
 
-    /* 🔥 GET GAMES */
+    /* LOAD GAMES */
 
     this.gameService.getGames().subscribe({
 
@@ -59,14 +61,12 @@ export class Home implements OnInit{
 
         console.log("HOME API:",data)
 
-        this.games=data
+        this.games=data || []
 
-        // Trending apps
-        this.topGames=data.slice(0,6)
+        this.topGames=this.games.slice(0,6)
 
-        // New apps
-        this.newGames=data.filter(
-          (g:Game)=> (g.category || '').toLowerCase() === 'new apps'
+        this.newGames=this.games.filter(
+          (g:Game)=>(g.category || '').toLowerCase()==='new apps'
         )
 
       },
