@@ -1,55 +1,73 @@
 <div class="manage-container">
 
-<h2>Manage Games</h2>
+  <h2>Manage Games</h2>
 
-<p *ngIf="loading" class="loading">Loading games...</p>
+  <!-- LOADING -->
+  <p *ngIf="loading" class="loading">
+    Loading games...
+  </p>
 
-<p *ngIf="errorMessage" class="error">{{errorMessage}}</p>
+  <!-- ERROR -->
+  <p *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </p>
 
-<p *ngIf="successMessage" class="success">{{successMessage}}</p>
+  <!-- SUCCESS -->
+  <p *ngIf="successMessage" class="success">
+    {{ successMessage }}
+  </p>
 
-<table class="games-table" *ngIf="!loading && games.length > 0">
+  <!-- TABLE -->
+  <table class="games-table" *ngIf="!loading && games && games.length > 0">
 
-<thead>
-<tr>
-<th>ID</th>
-<th>App</th>
-<th>Bonus</th>
-<th>Action</th>
-</tr>
-</thead>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>App</th>
+        <th>Bonus</th>
+        <th>Action</th>
+      </tr>
+    </thead>
 
-<tbody>
+    <tbody>
 
-<tr *ngFor="let game of games">
+      <tr *ngFor="let game of games">
 
-<td>{{game.id}}</td>
+        <td>{{ game.id }}</td>
 
-<td class="app-cell">
+        <td class="app-cell">
 
-<img *ngIf="game.image"
-[src]="'https://best-earning-apps-backend.onrender.com/uploads/' + game.image">
+          <!-- IMAGE -->
+          <img
+            *ngIf="game.image"
+            [src]="'https://best-earning-apps-backend.onrender.com/uploads/' + game.image"
+            alt="app image"
+          >
 
-<span>{{game.appName}}</span>
+          <span>{{ game.appName }}</span>
 
-</td>
+        </td>
 
-<td>₹{{game.bonus}}</td>
+        <td>₹{{ game.bonus }}</td>
 
-<td>
-<button class="delete-btn" (click)="deleteGame(game.id)">
-Delete
-</button>
-</td>
+        <td>
+          <button
+            class="delete-btn"
+            (click)="deleteGame(game.id)"
+          >
+            Delete
+          </button>
+        </td>
 
-</tr>
+      </tr>
 
-</tbody>
+    </tbody>
 
-</table>
+  </table>
 
-<p *ngIf="!loading && games.length === 0">
-No games found
-</p>
+  <!-- EMPTY STATE -->
+  <p *ngIf="!loading && games && games.length === 0">
+    No games found
+  </p>
 
 </div>

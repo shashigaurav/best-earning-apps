@@ -10,6 +10,7 @@ import { GameService } from '../../services/game'
   templateUrl:'./manage-games.html',
   styleUrls:['./manage-games.css']
 })
+
 export class ManageGames implements OnInit{
 
   games:Game[]=[]
@@ -26,18 +27,27 @@ export class ManageGames implements OnInit{
   loadGames(){
 
     this.loading=true
-    this.errorMessage=""
 
     this.gameService.getGames().subscribe({
 
-      next:(data:Game[])=>{
-        this.games=data
-        this.loading=false
+      next:(data:any)=>{
+
+        console.log("Games:",data)
+
+        this.games = data || []
+
+        this.loading = false
+
       },
 
-      error:()=>{
+      error:(err)=>{
+
+        console.error(err)
+
         this.errorMessage="Failed to load games ❌"
+
         this.loading=false
+
       }
 
     })
@@ -53,12 +63,17 @@ export class ManageGames implements OnInit{
     this.gameService.deleteGame(id).subscribe({
 
       next:()=>{
+
         this.successMessage="Game deleted successfully ✅"
+
         this.loadGames()
+
       },
 
       error:()=>{
+
         this.errorMessage="Delete failed ❌"
+
       }
 
     })
