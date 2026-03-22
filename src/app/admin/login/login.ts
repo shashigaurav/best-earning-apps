@@ -5,31 +5,32 @@ import { CommonModule } from '@angular/common'
 import { Router } from '@angular/router'
 
 @Component({
-  selector:'admin-login',
-  standalone:true,
-  imports:[FormsModule,CommonModule],
-  templateUrl:'./login.html',
-  styleUrls:['./login.css']
+  selector: 'admin-login',
+  standalone: true,
+  imports: [FormsModule, CommonModule],
+  templateUrl: './login.html',
+  styleUrls: ['./login.css']
 })
 
-export class Login{
+export class Login {
 
-  username = ""
-  password = ""
-  error = ""
-  loading = false
+  username: string = ""
+  password: string = ""
+  error: string = ""
+  loading: boolean = false
 
-  // 🔥 Render backend URL
-  api = "https://best-earning-apps-backend.onrender.com/admin/login"
+  // ✅ Correct backend API
+  api: string = "https://bestearningapps-backend.onrender.com/admin/login"
 
   constructor(
-    private http:HttpClient,
-    private router:Router
-  ){}
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
-  login(){
+  login() {
 
-    if(!this.username || !this.password){
+    // validation
+    if (!this.username || !this.password) {
       this.error = "Enter username & password ❌"
       return
     }
@@ -37,29 +38,37 @@ export class Login{
     this.loading = true
     this.error = ""
 
-    this.http.post<any>(this.api,{
-      username:this.username,
-      password:this.password
-    }).subscribe({
+    const data = {
+      username: this.username,
+      password: this.password
+    }
 
-      next: (res)=>{
+    this.http.post<any>(this.api, data).subscribe({
+
+      next: (res) => {
 
         this.loading = false
 
-        if(res.success){
-          // 🔥 simple auth
-          localStorage.setItem('admin','true')
+        if (res && res.success) {
 
+          // simple auth flag
+          localStorage.setItem('admin', 'true')
+
+          // redirect to dashboard
           this.router.navigate(['/admin/dashboard'])
-        }else{
+
+        } else {
           this.error = "Invalid credentials ❌"
         }
 
       },
 
-      error: ()=>{
+      error: (err) => {
+
+        console.error(err)
         this.loading = false
         this.error = "Server error ❌"
+
       }
 
     })
