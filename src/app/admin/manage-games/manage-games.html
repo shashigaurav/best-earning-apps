@@ -1,49 +1,55 @@
 <div class="manage-container">
 
-  <h2>Manage Games</h2>
+<h2>Manage Games</h2>
 
-  <!-- LOADING -->
-  <p *ngIf="loading" class="loading">Loading games...</p>
+<p *ngIf="loading" class="loading">Loading games...</p>
 
-  <!-- ERROR -->
-  <p *ngIf="errorMessage" class="error">{{errorMessage}}</p>
+<p *ngIf="errorMessage" class="error">{{errorMessage}}</p>
 
-  <!-- SUCCESS -->
-  <p *ngIf="successMessage" class="success">{{successMessage}}</p>
+<p *ngIf="successMessage" class="success">{{successMessage}}</p>
 
-  <!-- TABLE -->
-  <table class="games-table" *ngIf="!loading">
+<table class="games-table" *ngIf="!loading && games.length > 0">
 
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>App</th>
-        <th>Bonus</th>
-        <th>Action</th>
-      </tr>
-    </thead>
+<thead>
+<tr>
+<th>ID</th>
+<th>App</th>
+<th>Bonus</th>
+<th>Action</th>
+</tr>
+</thead>
 
-    <tbody>
-      <tr *ngFor="let game of games">
+<tbody>
 
-        <td>{{game.id}}</td>
+<tr *ngFor="let game of games">
 
-        <td class="app-cell">
-          <img [src]="'http://localhost:8080/uploads/'+game.image">
-          <span>{{game.appName}}</span>
-        </td>
+<td>{{game.id}}</td>
 
-        <td>₹{{game.bonus}}</td>
+<td class="app-cell">
 
-        <td>
-          <button class="delete-btn" (click)="deleteGame(game.id)">
-            Delete
-          </button>
-        </td>
+<img *ngIf="game.image"
+[src]="'https://best-earning-apps-backend.onrender.com/uploads/' + game.image">
 
-      </tr>
-    </tbody>
+<span>{{game.appName}}</span>
 
-  </table>
+</td>
+
+<td>₹{{game.bonus}}</td>
+
+<td>
+<button class="delete-btn" (click)="deleteGame(game.id)">
+Delete
+</button>
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<p *ngIf="!loading && games.length === 0">
+No games found
+</p>
 
 </div>
