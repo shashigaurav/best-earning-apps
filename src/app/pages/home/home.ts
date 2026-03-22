@@ -34,26 +34,46 @@ export class Home implements OnInit{
 
   ngOnInit():void{
 
-    // 🔥 SEO META TAGS
-    this.title.setTitle('Top Earning Apps in India 2026 | Earn Money Daily')
+    /* 🔥 SEO META */
+
+    this.title.setTitle(
+      'Top Earning Apps in India 2026 | Best Money Earning Apps'
+    )
 
     this.meta.updateTag({
       name:'description',
-      content:'Best earning apps in India 2026. Earn money online without investment using trusted apps with real proof and instant withdrawal.'
+      content:'Best earning apps in India 2026. Earn money online daily without investment using trusted apps with instant withdrawal.'
     })
 
     this.meta.updateTag({
       name:'keywords',
-      content:'earning apps, money earning apps, earn money online, best apps 2026'
+      content:'earning apps, money earning apps, best earning apps 2026, earn money online'
     })
 
-    this.gameService.getGames().subscribe((data:Game[])=>{
 
-      this.games=data
+    /* 🔥 GET GAMES */
 
-      this.topGames=data.slice(0,6)
+    this.gameService.getGames().subscribe({
 
-      this.newGames=data.filter((g:Game)=>g.category==='new apps')
+      next:(data:Game[])=>{
+
+        console.log("HOME API:",data)
+
+        this.games=data
+
+        // Trending apps
+        this.topGames=data.slice(0,6)
+
+        // New apps
+        this.newGames=data.filter(
+          (g:Game)=> (g.category || '').toLowerCase() === 'new apps'
+        )
+
+      },
+
+      error:(err)=>{
+        console.error("Home API error:",err)
+      }
 
     })
 
@@ -62,11 +82,17 @@ export class Home implements OnInit{
   /* TRENDING SCROLL */
 
   scrollLeft():void{
-    this.trending?.nativeElement.scrollBy({ left:-300, behavior:'smooth' })
+    this.trending?.nativeElement.scrollBy({
+      left:-300,
+      behavior:'smooth'
+    })
   }
 
   scrollRight():void{
-    this.trending?.nativeElement.scrollBy({ left:300, behavior:'smooth' })
+    this.trending?.nativeElement.scrollBy({
+      left:300,
+      behavior:'smooth'
+    })
   }
 
 }
