@@ -72,9 +72,7 @@
 
               "extractLicenses": true,
 
-              "namedChunks": false,
-
-              "vendorChunk": false
+              "namedChunks": false
 
             },
 
@@ -86,9 +84,7 @@
 
               "extractLicenses": false,
 
-              "namedChunks": true,
-
-              "vendorChunk": true
+              "namedChunks": true
 
             }
 
