@@ -1,15 +1,50 @@
+<!-- ===================== -->
+<!-- HEADER -->
+<!-- ===================== -->
+
 <app-header></app-header>
 
-<main>
+<!-- ===================== -->
+<!-- MAIN CONTENT -->
+<!-- ===================== -->
 
-<router-outlet></router-outlet>
+<main class="main-content">
+
+  <router-outlet></router-outlet>
 
 </main>
 
+<!-- ===================== -->
+<!-- TELEGRAM FLOAT -->
+<!-- ===================== -->
+
 <a
-href="https://t.me/yourtelegram"
-target="_blank"
-class="telegram-float"
+  href="https://t.me/yourtelegram"
+  target="_blank"
+  class="telegram-float"
+  aria-label="Join Telegram"
 >
-📢 Join Telegram
+
+  <span class="telegram-icon">
+    📢
+  </span>
+
+  <span class="telegram-text">
+    Join Telegram
+  </span>
+
 </a>
+
+<!-- ===================== -->
+<!-- SCROLL TOP BUTTON -->
+<!-- ===================== -->
+
+<button
+  class="scroll-top-btn"
+  onclick="window.scrollTo({top:0,behavior:'smooth'})"
+  aria-label="Scroll To Top"
+>
+
+  ↑
+
+</button>

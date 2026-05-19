@@ -1,31 +1,80 @@
 <div class="banner">
 
+  <!-- SLIDER -->
+
   <div class="banner-slide">
 
-    <img 
-      [src]="banners[current]" 
-      alt="Earning Apps Banner"
+    <img
+      [src]="banners[current]"
+      alt="Top Earning Apps Banner"
+      loading="eager"
     >
 
+    <!-- OVERLAY -->
+
     <div class="banner-overlay">
-      <h1>💰 Best Earning Apps</h1>
-      <p>Earn daily without investment</p>
-      <button>Start Earning 🚀</button>
+
+      <span class="banner-badge">
+        🔥 Trusted Apps
+      </span>
+
+      <h1>
+        Play Games & Earn Real Money
+      </h1>
+
+      <p>
+        Discover the best earning apps with instant withdrawal and daily rewards.
+      </p>
+
+      <div class="banner-buttons">
+
+        <button class="primary-btn">
+          🚀 Start Earning
+        </button>
+
+        <button class="secondary-btn">
+          🔥 Trending Apps
+        </button>
+
+      </div>
+
     </div>
 
   </div>
 
-  <!-- LEFT RIGHT BUTTON -->
-  <button class="nav left" (click)="prevSlide()">❮</button>
-  <button class="nav right" (click)="nextSlide()">❯</button>
+  <!-- NAVIGATION -->
+
+  <button
+    class="nav left"
+    (click)="prevSlide()"
+    aria-label="Previous Banner"
+  >
+    ❮
+  </button>
+
+  <button
+    class="nav right"
+    (click)="nextSlide()"
+    aria-label="Next Banner"
+  >
+    ❯
+  </button>
 
   <!-- DOTS -->
+
   <div class="dots">
-    <span 
-      *ngFor="let b of banners; let i = index"
+
+    <span
+      *ngFor="
+        let banner of banners;
+        let i = index;
+        trackBy: trackByIndex
+      "
       [class.active]="i === current"
       (click)="goToSlide(i)"
-    ></span>
+    >
+    </span>
+
   </div>
 
 </div>

@@ -1,24 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+>
+
+  <!-- ========================= -->
   <!-- HOME -->
-  <url>
-    <loc>https://best-earning-apps.netlify.app/</loc>
-    <priority>1.0</priority>
-  </url>
-
-  <!-- STATIC PAGES -->
-  <url>
-    <loc>https://best-earning-apps.netlify.app/all-apps</loc>
-  </url>
+  <!-- ========================= -->
 
   <url>
-    <loc>https://best-earning-apps.netlify.app/new-apps</loc>
+
+    <loc>
+      https://best-earning-apps.netlify.app/
+    </loc>
+
+    <changefreq>
+      daily
+    </changefreq>
+
+    <priority>
+      1.0
+    </priority>
+
   </url>
 
-  <!-- SAMPLE APP PAGE -->
+  <!-- ========================= -->
+  <!-- ALL APPS -->
+  <!-- ========================= -->
+
   <url>
-    <loc>https://best-earning-apps.netlify.app/app/1</loc>
+
+    <loc>
+      https://best-earning-apps.netlify.app/all-apps
+    </loc>
+
+    <changefreq>
+      daily
+    </changefreq>
+
+    <priority>
+      0.9
+    </priority>
+
+  </url>
+
+  <!-- ========================= -->
+  <!-- NEW APPS -->
+  <!-- ========================= -->
+
+  <url>
+
+    <loc>
+      https://best-earning-apps.netlify.app/new-apps
+    </loc>
+
+    <changefreq>
+      daily
+    </changefreq>
+
+    <priority>
+      0.8
+    </priority>
+
+  </url>
+
+  <!-- ========================= -->
+  <!-- SAMPLE APP -->
+  <!-- ========================= -->
+
+  <url>
+
+    <loc>
+      https://best-earning-apps.netlify.app/app/1
+    </loc>
+
+    <changefreq>
+      weekly
+    </changefreq>
+
+    <priority>
+      0.8
+    </priority>
+
   </url>
 
 </urlset>

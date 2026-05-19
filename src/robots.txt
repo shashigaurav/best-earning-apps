@@ -1,4 +1,22 @@
 User-agent: *
+
 Allow: /
+
+# =========================
+# IMPORTANT PAGES
+# =========================
+
+Allow: /all-apps
+Allow: /new-apps
+
+# =========================
+# BLOCK ADMIN
+# =========================
+
+Disallow: /admin/
+
+# =========================
+# SITEMAP
+# =========================
 
 Sitemap: https://best-earning-apps.netlify.app/sitemap.xml

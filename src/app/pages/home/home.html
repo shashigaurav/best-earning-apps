@@ -1,125 +1,282 @@
 <div class="container">
 
-  <!-- 🔥 MAIN H1 (SEO) -->
-  <h1 class="main-title">
-    Top Earning Apps in India 2026 – Earn Money Online Without Investment
-  </h1>
+  <!-- HERO -->
+
+  <section class="hero-section">
+
+    <h1 class="main-title">
+      Top Earning Apps in India 2026 – Earn Money Online Without Investment
+    </h1>
+
+    <p class="hero-subtitle">
+      Play games, complete tasks, and earn real money daily using trusted earning apps.
+    </p>
+
+  </section>
 
   <!-- BANNER -->
+
   <app-banner></app-banner>
 
   <!-- NOTICE -->
+
   <div class="notice-bar">
+
     <div class="notice-track">
+
       <span>
         📢 New earning apps added daily |
         ⚠ Never share OTP |
-        💰 Trusted apps only
+        💰 Trusted apps only |
+        🔥 Instant withdrawal apps
       </span>
+
     </div>
+
   </div>
 
   <!-- TRENDING -->
-  <h2 class="section-title">🔥 Trending Earning Apps</h2>
 
-  <div class="trending-grid">
+  <section class="section-space">
 
-    <div *ngFor="let game of games.slice(0,5)" class="trend-card">
+    <div class="section-header">
 
-      <a [routerLink]="['/app', game.id]">
-
-        <img
-          *ngIf="game.image"
-          [src]="'https://best-earning-apps-backend.onrender.com/uploads/' + game.image"
-          [alt]="game.appName + ' earning app'"
-          loading="lazy"
-        >
-
-        <h3>{{game.appName}}</h3>
-
-      </a>
+      <h2 class="section-title">
+        🔥 Trending Earning Apps
+      </h2>
 
     </div>
 
-  </div>
+    <div class="trending-grid">
+
+      <div *ngFor="let game of games.slice(0,5)" class="trend-card">
+
+        <a [routerLink]="['/app', game.id]">
+
+          <div class="image-wrapper">
+
+            <span class="trending-badge">
+              Trending
+            </span>
+
+            <img
+              *ngIf="game.image"
+              [src]="'https://best-earning-apps-backend.onrender.com/uploads/' + game.image"
+              [alt]="game.appName + ' earning app'"
+              loading="lazy"
+            >
+
+          </div>
+
+          <h3>{{game.appName}}</h3>
+
+          <div class="app-info">
+            ⭐ 4.5 • Trusted App
+          </div>
+
+          <button class="download-btn">
+            Download Now
+          </button>
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
 
   <!-- BEST APPS -->
-  <h2 class="section-title">🔥 Best Money Earning Apps 2026</h2>
 
-  <div class="apps">
+  <section class="section-space">
 
-    <div *ngFor="let game of topGames" class="card">
+    <h2 class="section-title">
+      💰 Top Trusted Money Earning Apps
+    </h2>
 
-      <a [routerLink]="['/app', game.id]">
+    <div class="apps">
 
-        <img
-          *ngIf="game.image"
-          [src]="'https://best-earning-apps-backend.onrender.com/uploads/' + game.image"
-          [alt]="game.appName + ' real earning app'"
-          loading="lazy"
-        >
+      <div *ngFor="let game of topGames" class="card">
 
-        <h3>{{game.appName}}</h3>
+        <a [routerLink]="['/app', game.id]">
 
-      </a>
+          <div class="image-wrapper">
 
-      <p class="bonus">₹{{game.bonus}}</p>
+            <img
+              *ngIf="game.image"
+              [src]="'https://best-earning-apps-backend.onrender.com/uploads/' + game.image"
+              [alt]="game.appName + ' real earning app'"
+              loading="lazy"
+            >
+
+          </div>
+
+          <h3>{{game.appName}}</h3>
+
+          <div class="app-info">
+            ⭐ 4.5 • 10K+ Users
+          </div>
+
+        </a>
+
+        <p class="bonus">
+          ₹{{game.bonus}} Bonus
+        </p>
+
+        <button class="download-btn">
+          Install App
+        </button>
+
+      </div>
 
     </div>
 
-  </div>
+  </section>
 
   <!-- NEW APPS -->
-  <h2 class="section-title">🆕 New Earning Apps</h2>
 
-  <div class="apps">
+  <section class="section-space">
 
-    <div *ngFor="let game of newGames" class="card">
+    <h2 class="section-title">
+      🆕 Newly Added Earning Apps
+    </h2>
 
-      <a [routerLink]="['/app', game.id]">
+    <div class="apps">
 
-        <img
-          *ngIf="game.image"
-          [src]="'https://best-earning-apps-backend.onrender.com/uploads/' + game.image"
-          [alt]="game.appName + ' new earning app'"
-          loading="lazy"
-        >
+      <div *ngFor="let game of newGames" class="card">
 
-        <h3>{{game.appName}}</h3>
+        <a [routerLink]="['/app', game.id]">
 
-      </a>
+          <div class="image-wrapper">
+
+            <span class="new-badge">
+              NEW
+            </span>
+
+            <img
+              *ngIf="game.image"
+              [src]="'https://best-earning-apps-backend.onrender.com/uploads/' + game.image"
+              [alt]="game.appName + ' new earning app'"
+              loading="lazy"
+            >
+
+          </div>
+
+          <h3>{{game.appName}}</h3>
+
+        </a>
+
+        <button class="download-btn">
+          Get Reward
+        </button>
+
+      </div>
 
     </div>
 
-  </div>
+  </section>
 
-  <!-- SEO CONTENT -->
-  <div class="seo-content">
+  <!-- TELEGRAM -->
 
-    <h2>Best Earning Apps in India</h2>
+  <section class="telegram-box">
+
+    <h2>
+      🚀 Join Our Telegram Channel
+    </h2>
 
     <p>
-      Discover the best earning apps in India 2026 that help you earn money online
-      without any investment. These apps provide real income opportunities through
-      tasks, referrals, and gaming. Our platform lists only trusted apps with
-      verified payment proofs.
+      Get daily earning apps, referral codes, and instant reward updates.
     </p>
 
-    <h3>Why choose these apps?</h3>
+    <a
+      href="https://t.me/YOUR_LINK"
+      target="_blank"
+      class="telegram-btn"
+    >
+      Join Telegram
+    </a>
+
+  </section>
+
+  <!-- SEO CONTENT -->
+
+  <section class="seo-content">
+
+    <h2>
+      Best Earning Apps in India
+    </h2>
+
+    <p>
+      Discover the best earning apps in India 2026 that help users earn money online
+      without investment. These apps provide rewards through referrals, gaming,
+      daily tasks, and cashback offers.
+    </p>
+
+    <h3>
+      Why Choose These Apps?
+    </h3>
 
     <ul>
-      <li>Instant withdrawal</li>
+
+      <li>Instant withdrawal support</li>
+
       <li>No investment required</li>
-      <li>High earning potential</li>
-      <li>Daily new apps added</li>
+
+      <li>Trusted & verified apps</li>
+
+      <li>Daily new earning apps added</li>
+
+      <li>Easy referral bonuses</li>
+
     </ul>
 
-  </div>
+  </section>
+
+  <!-- FAQ -->
+
+  <section class="faq-section">
+
+    <h2>
+      Frequently Asked Questions
+    </h2>
+
+    <div class="faq-box">
+
+      <h3>
+        Which is the best earning app in India?
+      </h3>
+
+      <p>
+        There are many trusted earning apps that provide real cash rewards,
+        referral bonuses, and instant withdrawals.
+      </p>
+
+    </div>
+
+    <div class="faq-box">
+
+      <h3>
+        Can I earn money without investment?
+      </h3>
+
+      <p>
+        Yes, many apps allow users to earn money through referrals,
+        gaming, and tasks without investment.
+      </p>
+
+    </div>
+
+  </section>
 
   <!-- DISCLAIMER -->
+
   <div class="warning-alert">
-    ⚠ This website provides information only. Verify before investing.
+
+    ⚠ This website provides information only. Verify apps before investing money.
+
   </div>
+
+  <!-- FOOTER -->
 
   <app-footer></app-footer>
 

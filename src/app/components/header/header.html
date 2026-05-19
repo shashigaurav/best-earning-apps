@@ -2,36 +2,105 @@
 
   <div class="nav-container">
 
+    <!-- ===================== -->
     <!-- LOGO -->
-    <div class="logo" routerLink="/">
-      <img src="/logo.png" alt="Best Earning Apps Logo">
-      <span>BestEarningApps</span>
+    <!-- ===================== -->
+
+    <a
+      class="logo"
+      routerLink="/"
+    >
+
+      <img
+        src="/logo.png"
+        alt="Best Earning Apps Logo"
+      >
+
+      <div class="logo-text">
+
+        <span class="brand-name">
+          BestEarningApps
+        </span>
+
+        <small>
+          Play • Earn • Win
+        </small>
+
+      </div>
+
+    </a>
+
+    <!-- ===================== -->
+    <!-- SEARCH -->
+    <!-- ===================== -->
+
+    <div class="search-box">
+
+      <app-search></app-search>
+
     </div>
 
-    <!-- 🔥 SEARCH COMPONENT -->
-    <app-search></app-search>
+    <!-- ===================== -->
+    <!-- NAVIGATION -->
+    <!-- ===================== -->
 
-    <!-- NAV LINKS -->
     <nav [class.active]="menuOpen">
 
-      <a routerLink="/">Home</a>
-      <a routerLink="/all-apps">All Apps</a>
-      <a routerLink="/new-apps">New Apps</a>
+      <a
+        routerLink="/"
+        routerLinkActive="active-link"
+      >
+        Home
+      </a>
 
-      <a 
+      <a
+        routerLink="/all-apps"
+        routerLinkActive="active-link"
+      >
+        All Apps
+      </a>
+
+      <a
+        routerLink="/new-apps"
+        routerLinkActive="active-link"
+      >
+        New Apps
+      </a>
+
+      <a
+        routerLink="/blog"
+        routerLinkActive="active-link"
+      >
+        Blog
+      </a>
+
+      <!-- TELEGRAM -->
+
+      <a
         href="https://t.me/yourtelegram"
         target="_blank"
-        class="telegram"
+        class="telegram-btn-nav"
       >
-        Join Telegram
+
+        📢 Join Telegram
+
       </a>
 
     </nav>
 
-    <!-- MOBILE MENU BUTTON -->
-    <div class="menu-icon" (click)="toggleMenu()">
+    <!-- ===================== -->
+    <!-- MOBILE MENU -->
+    <!-- ===================== -->
+
+    <button
+      class="menu-icon"
+      (click)="toggleMenu()"
+      aria-label="Toggle Menu"
+    >
+
       ☰
-    </div>
+
+    </button>
 
   </div>
 

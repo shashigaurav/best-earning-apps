@@ -1,6 +1,13 @@
-import { Component, ElementRef, ViewChild, OnInit } from '@angular/core'
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  OnInit
+} from '@angular/core'
+
 import { CommonModule } from '@angular/common'
 import { RouterModule } from '@angular/router'
+import { Title, Meta } from '@angular/platform-browser'
 
 import { GameService } from '../../services/game'
 import { Game } from '../../models/game'
@@ -8,91 +15,161 @@ import { Game } from '../../models/game'
 import { Banner } from '../../components/banner/banner'
 import { Footer } from '../../components/footer/footer'
 
-import { Title, Meta } from '@angular/platform-browser'
-
 @Component({
-  selector:'app-home',
-  standalone:true,
-  imports:[CommonModule,RouterModule,Banner,Footer],
-  templateUrl:'./home.html',
-  styleUrls:['./home.css']
+  selector: 'app-home',
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    Banner,
+    Footer
+  ],
+  templateUrl: './home.html',
+  styleUrls: ['./home.css']
 })
 
-export class Home implements OnInit{
+export class Home implements OnInit {
 
-  games:Game[]=[]
-  topGames:Game[]=[]
-  newGames:Game[]=[]
+  games: Game[] = []
+  topGames: Game[] = []
+  newGames: Game[] = []
+  trendingGames: Game[] = []
 
-  backendUrl="https://best-earning-apps-backend.onrender.com/uploads/"
+  backendUrl =
+    'https://best-earning-apps-backend.onrender.com/uploads/'
 
-  @ViewChild('trending') trending!:ElementRef
+  @ViewChild('trending')
+  trending!: ElementRef
 
   constructor(
-    private gameService:GameService,
-    private title:Title,
-    private meta:Meta
-  ){}
+    private gameService: GameService,
+    private title: Title,
+    private meta: Meta
+  ) {}
 
-  ngOnInit():void{
+  ngOnInit(): void {
 
-    /* SEO */
+    this.setSEO()
+
+    this.loadGames()
+
+  }
+
+  /* ========================= */
+  /* SEO */
+  /* ========================= */
+
+  setSEO(): void {
 
     this.title.setTitle(
-      'Top Earning Apps in India 2026 | Best Money Earning Apps'
+      'Top Earning Apps in India 2026 | Play Games & Earn Money Daily'
     )
 
     this.meta.updateTag({
-      name:'description',
-      content:'Best earning apps in India 2026. Earn money online daily without investment using trusted apps with instant withdrawal.'
+      name: 'description',
+      content:
+        'Discover the best earning apps in India 2026. Play games, complete tasks, and earn real money daily with instant withdrawal apps.'
     })
 
     this.meta.updateTag({
-      name:'keywords',
-      content:'earning apps, money earning apps, best earning apps 2026, earn money online'
+      name: 'keywords',
+      content:
+        'top earning apps, play and earn games, money earning apps india, earning games 2026, online earning apps'
     })
 
+    /* OPEN GRAPH */
 
-    /* LOAD GAMES */
+    this.meta.updateTag({
+      property: 'og:title',
+      content: 'Top Earning Apps in India 2026'
+    })
+
+    this.meta.updateTag({
+      property: 'og:description',
+      content:
+        'Play games and earn money daily using trusted earning apps.'
+    })
+
+    this.meta.updateTag({
+      property: 'og:type',
+      content: 'website'
+    })
+
+    this.meta.updateTag({
+      property: 'og:image',
+      content:
+        'https://best-earning-apps.netlify.app/assets/logo.png'
+    })
+
+  }
+
+  /* ========================= */
+  /* LOAD GAMES */
+  /* ========================= */
+
+  loadGames(): void {
 
     this.gameService.getGames().subscribe({
 
-      next:(data:Game[])=>{
+      next: (data: Game[]) => {
 
-        console.log("HOME API:",data)
+        console.log('HOME API:', data)
 
-        this.games=data || []
+        this.games = data || []
 
-        this.topGames=this.games.slice(0,6)
+        /* TOP GAMES */
 
-        this.newGames=this.games.filter(
-          (g:Game)=>(g.category || '').toLowerCase()==='new apps'
+        this.topGames = this.games.slice(0, 6)
+
+        /* NEW GAMES */
+
+        this.newGames = this.games.filter(
+          (game: Game) =>
+            (game.category || '').toLowerCase() === 'new apps'
+        )
+
+        /* TRENDING GAMES */
+
+        this.trendingGames = this.games.filter(
+          (game: any) => game.isTrending === true
         )
 
       },
 
-      error:(err)=>{
-        console.error("Home API error:",err)
+      error: (err) => {
+
+        console.error('Home API Error:', err)
+
       }
 
     })
 
   }
 
+  /* ========================= */
   /* TRENDING SCROLL */
+  /* ========================= */
 
-  scrollLeft():void{
+  scrollLeft(): void {
+
     this.trending?.nativeElement.scrollBy({
-      left:-300,
-      behavior:'smooth'
+
+      left: -320,
+      behavior: 'smooth'
+
     })
+
   }
 
-  scrollRight():void{
+  scrollRight(): void {
+
     this.trending?.nativeElement.scrollBy({
-      left:300,
-      behavior:'smooth'
+
+      left: 320,
+      behavior: 'smooth'
+
     })
+
   }
 
 }

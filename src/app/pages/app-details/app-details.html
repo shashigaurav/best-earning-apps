@@ -1,115 +1,334 @@
-<div class="details-container" *ngIf="game">
+<div
+  class="details-container"
+  *ngIf="game && !loading"
+>
 
-  <!-- HEADER -->
-  <div class="app-header">
+  <!-- ===================== -->
+  <!-- APP HEADER -->
+  <!-- ===================== -->
 
-    <img 
-      [src]="'http://localhost:8080/uploads/' + game.image" 
-      [alt]="game.appName + ' earning app screenshot'"
-    >
+  <section class="app-header">
+
+    <div class="app-image">
+
+      <img
+        [src]="backendUrl + game.image"
+        [alt]="game.appName + ' earning app screenshot'"
+        loading="lazy"
+      >
+
+    </div>
 
     <div class="app-info">
-      <h1>{{game.appName}} Earning App Review 2026</h1>
+
+      <span class="top-badge">
+        🔥 Trusted Earning App
+      </span>
+
+      <h1>
+        {{game.appName}} Earning App Review 2026
+      </h1>
+
+      <!-- RATING -->
 
       <div class="rating">
+
         <span *ngFor="let s of [1,2,3,4,5]">
-          <span *ngIf="s <= game.rating">⭐</span>
-          <span *ngIf="s > game.rating" class="grey">⭐</span>
+
+          <span *ngIf="s <= game.rating">
+            ⭐
+          </span>
+
+          <span
+            *ngIf="s > game.rating"
+            class="grey"
+          >
+            ⭐
+          </span>
+
         </span>
-        <span>{{game.rating}} / 5</span>
+
+        <span class="rating-text">
+          {{game.rating}} / 5
+        </span>
+
       </div>
 
-      <p class="downloads">📥 {{game.downloads}}+ Downloads</p>
-      <p class="bonus">💰 Bonus ₹{{game.bonus}}</p>
+      <!-- INFO -->
 
-      <a [href]="game.downloadLink" target="_blank" rel="noopener">
-        <button class="install-btn">Install & Earn</button>
-      </a>
+      <div class="app-meta">
+
+        <p>
+          📥 {{game.downloads}}+ Downloads
+        </p>
+
+        <p>
+          💰 Bonus ₹{{game.bonus}}
+        </p>
+
+        <p>
+          ⚡ Instant Withdrawal
+        </p>
+
+      </div>
+
+      <!-- BUTTONS -->
+
+      <div class="action-buttons">
+
+        <a
+          [href]="game.downloadLink"
+          target="_blank"
+          rel="noopener"
+        >
+
+          <button class="install-btn">
+            🚀 Install & Earn
+          </button>
+
+        </a>
+
+        <button class="telegram-btn">
+          🔥 Join Telegram
+        </button>
+
+      </div>
+
     </div>
 
-  </div>
+  </section>
 
+  <!-- ===================== -->
   <!-- CONTENT -->
-  <div class="content">
+  <!-- ===================== -->
 
-    <h2>About {{game.appName}}</h2>
+  <section class="content">
+
+    <h2>
+      About {{game.appName}}
+    </h2>
+
     <p>
-      {{game.appName}} is one of the best earning apps in India 2026. Users can earn real money by completing tasks, referring friends, and playing games.
+      {{game.appName}} is one of the best earning apps in India 2026.
+      Users can earn money online by completing tasks,
+      referring friends, and playing games.
     </p>
 
-    <h2>How to Earn Money from {{game.appName}}</h2>
+    <!-- HOW TO EARN -->
+
+    <h2>
+      How to Earn Money from {{game.appName}}
+    </h2>
+
     <ul>
-      <li>Complete tasks</li>
-      <li>Refer & earn</li>
-      <li>Play games</li>
-      <li>Withdraw easily</li>
+
+      <li>
+        Complete daily tasks
+      </li>
+
+      <li>
+        Refer friends and earn bonuses
+      </li>
+
+      <li>
+        Play games and collect rewards
+      </li>
+
+      <li>
+        Withdraw earnings instantly
+      </li>
+
     </ul>
 
-    <h2>Withdrawal Proof & Payment</h2>
+    <!-- PAYMENT -->
+
+    <h2>
+      Withdrawal & Payment Methods
+    </h2>
+
     <p>
-      Fast withdrawal via UPI, Paytm and bank transfer. Minimum ₹50.
+      Users can withdraw earnings through
+      UPI, Paytm wallet, and bank transfer.
+      Minimum withdrawal starts from ₹50.
     </p>
 
-    <h2>Pros and Cons</h2>
+    <!-- PROS CONS -->
+
+    <h2>
+      Pros & Cons
+    </h2>
 
     <div class="pros-cons">
+
+      <!-- PROS -->
+
       <div class="pros">
-        <h3>Pros</h3>
+
+        <h3>
+          ✅ Pros
+        </h3>
+
         <ul>
-          <li>Easy earning</li>
-          <li>Fast withdrawal</li>
+
+          <li>
+            Easy earning options
+          </li>
+
+          <li>
+            Fast withdrawal
+          </li>
+
+          <li>
+            Referral bonus available
+          </li>
+
+          <li>
+            Beginner friendly
+          </li>
+
         </ul>
+
       </div>
+
+      <!-- CONS -->
 
       <div class="cons">
-        <h3>Cons</h3>
+
+        <h3>
+          ❌ Cons
+        </h3>
+
         <ul>
-          <li>Ads</li>
-          <li>Variable income</li>
+
+          <li>
+            Ads may appear
+          </li>
+
+          <li>
+            Earnings depend on activity
+          </li>
+
         </ul>
-      </div>
-    </div>
 
-    <!-- 🔥 FAQ SCHEMA -->
-    <div class="faq" itemscope itemtype="https://schema.org/FAQPage">
-
-      <h2>FAQs</h2>
-
-      <div itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
-        <h4 itemprop="name">Is {{game.appName}} real or fake?</h4>
-        <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-          <span itemprop="text">
-            {{game.appName}} is a legitimate earning app. Always verify before investing.
-          </span>
-        </p>
-      </div>
-
-      <div itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
-        <h4 itemprop="name">How much can I earn?</h4>
-        <p itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-          <span itemprop="text">
-            You can earn ₹100–₹500 daily depending on activity.
-          </span>
-        </p>
       </div>
 
     </div>
 
-  </div>
+    <!-- FAQ -->
 
-  <!-- RELATED -->
-  <h2 class="section-title">🔥 Related Apps</h2>
+    <div
+      class="faq"
+      itemscope
+      itemtype="https://schema.org/FAQPage"
+    >
 
-  <div class="related">
-    <div *ngFor="let g of relatedGames" class="card">
-      <a [routerLink]="['/app', g.id]">
-        <img 
-          [src]="'http://localhost:8080/uploads/' + g.image" 
-          [alt]="g.appName"
+      <h2>
+        Frequently Asked Questions
+      </h2>
+
+      <!-- FAQ 1 -->
+
+      <div
+        class="faq-box"
+        itemprop="mainEntity"
+        itemscope
+        itemtype="https://schema.org/Question"
+      >
+
+        <h4 itemprop="name">
+          Is {{game.appName}} real or fake?
+        </h4>
+
+        <p
+          itemprop="acceptedAnswer"
+          itemscope
+          itemtype="https://schema.org/Answer"
         >
-        <h3>{{g.appName}}</h3>
-      </a>
+
+          <span itemprop="text">
+
+            {{game.appName}} is a legitimate earning app.
+            Always verify details before investing money.
+
+          </span>
+
+        </p>
+
+      </div>
+
+      <!-- FAQ 2 -->
+
+      <div
+        class="faq-box"
+        itemprop="mainEntity"
+        itemscope
+        itemtype="https://schema.org/Question"
+      >
+
+        <h4 itemprop="name">
+          How much can I earn daily?
+        </h4>
+
+        <p
+          itemprop="acceptedAnswer"
+          itemscope
+          itemtype="https://schema.org/Answer"
+        >
+
+          <span itemprop="text">
+
+            Users can earn ₹100–₹500 daily depending
+            on referrals, tasks, and activity.
+
+          </span>
+
+        </p>
+
+      </div>
+
     </div>
-  </div>
+
+  </section>
+
+  <!-- ===================== -->
+  <!-- RELATED APPS -->
+  <!-- ===================== -->
+
+  <section class="related-section">
+
+    <h2 class="section-title">
+      🔥 Related Earning Apps
+    </h2>
+
+    <div class="related">
+
+      <div
+        *ngFor="let g of relatedGames"
+        class="card"
+      >
+
+        <a [routerLink]="['/app', g.id]">
+
+          <img
+            [src]="backendUrl + g.image"
+            [alt]="g.appName"
+            loading="lazy"
+          >
+
+          <h3>
+            {{g.appName}}
+          </h3>
+
+          <p class="related-bonus">
+            ₹{{g.bonus}} Bonus
+          </p>
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
 
 </div>

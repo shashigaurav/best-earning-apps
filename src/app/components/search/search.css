@@ -1,21 +1,183 @@
+/* ================= */
+/* SEARCH BOX */
+/* ================= */
+
 .search-box{
-  margin:20px 0;
-  display:flex;
-  justify-content:center;
+  position:relative;
+
+  width:100%;
 }
+
+/* ================= */
+/* INPUT WRAPPER */
+/* ================= */
+
+.search-input-wrapper{
+  position:relative;
+
+  display:flex;
+  align-items:center;
+}
+
+/* ================= */
+/* SEARCH ICON */
+/* ================= */
+
+.search-icon{
+  position:absolute;
+
+  left:16px;
+
+  font-size:16px;
+
+  color:#94a3b8;
+
+  z-index:2;
+}
+
+/* ================= */
+/* INPUT */
+/* ================= */
 
 .search-box input{
   width:100%;
-  max-width:400px;
-  padding:12px 18px;
-  border-radius:25px;
-  border:1px solid #ddd;
+
+  background:#1e293b;
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  color:#fff;
+
+  padding:14px 46px 14px 46px;
+
+  border-radius:16px;
+
   outline:none;
+
   font-size:14px;
+
+  transition:0.3s;
+
+  box-shadow:0 6px 18px rgba(0,0,0,0.15);
+}
+
+/* PLACEHOLDER */
+
+.search-box input::placeholder{
+  color:#94a3b8;
+}
+
+/* FOCUS */
+
+.search-box input:focus{
+  border-color:#7c3aed;
+
+  box-shadow:0 0 0 4px rgba(124,58,237,0.15);
+}
+
+/* ================= */
+/* CLEAR BUTTON */
+/* ================= */
+
+.clear-btn{
+  position:absolute;
+
+  right:12px;
+
+  width:28px;
+  height:28px;
+
+  border:none;
+
+  border-radius:50%;
+
+  background:#334155;
+
+  color:#fff;
+
+  cursor:pointer;
+
+  font-size:12px;
+
   transition:0.3s;
 }
 
-.search-box input:focus{
-  border-color:#00c853;
-  box-shadow:0 0 10px rgba(0,200,83,0.2);
+.clear-btn:hover{
+  background:#475569;
+}
+
+/* ================= */
+/* SEARCH SUGGESTIONS */
+/* ================= */
+
+.search-suggestions{
+  position:absolute;
+
+  top:58px;
+  left:0;
+
+  width:100%;
+
+  background:#1e293b;
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  border-radius:16px;
+
+  overflow:hidden;
+
+  box-shadow:0 12px 30px rgba(0,0,0,0.3);
+
+  z-index:999;
+}
+
+/* ITEM */
+
+.suggestion-item{
+  padding:14px 16px;
+
+  color:#e2e8f0;
+
+  font-size:14px;
+
+  cursor:pointer;
+
+  transition:0.3s;
+
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.suggestion-item:last-child{
+  border-bottom:none;
+}
+
+.suggestion-item:hover{
+  background:#334155;
+  color:#fff;
+}
+
+/* ================= */
+/* MOBILE */
+/* ================= */
+
+@media(max-width:768px){
+
+  .search-box input{
+    padding:13px 44px 13px 44px;
+
+    font-size:13px;
+  }
+
+  .search-suggestions{
+    top:54px;
+  }
+
+}
+
+@media(max-width:480px){
+
+  .search-box input{
+    border-radius:14px;
+  }
+
 }

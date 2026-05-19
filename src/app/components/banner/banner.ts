@@ -1,4 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core'
+import {
+  Component,
+  OnInit,
+  OnDestroy
+} from '@angular/core'
+
 import { CommonModule } from '@angular/common'
 
 @Component({
@@ -11,42 +16,101 @@ import { CommonModule } from '@angular/common'
 
 export class Banner implements OnInit, OnDestroy {
 
-  banners = [
+  /* ========================= */
+  /* BANNERS */
+  /* ========================= */
+
+  banners: string[] = [
+
     'assets/banner1.png',
     'assets/banner2.png',
     'assets/banner3.png'
+
   ]
 
-  current = 0
+  current: number = 0
+
   intervalId: any
 
-  ngOnInit() {
+  /* ========================= */
+  /* INIT */
+  /* ========================= */
+
+  ngOnInit(): void {
+
     this.startSlider()
+
   }
 
-  startSlider() {
+  /* ========================= */
+  /* AUTO SLIDER */
+  /* ========================= */
+
+  startSlider(): void {
+
     this.intervalId = setInterval(() => {
+
       this.nextSlide()
-    }, 3000)
+
+    }, 4000)
+
   }
 
-  nextSlide() {
-    this.current = (this.current + 1) % this.banners.length
-  }
+  /* ========================= */
+  /* NEXT */
+  /* ========================= */
 
-  prevSlide() {
+  nextSlide(): void {
+
     this.current =
-      (this.current - 1 + this.banners.length) % this.banners.length
+      (this.current + 1) % this.banners.length
+
   }
 
-  goToSlide(index: number) {
+  /* ========================= */
+  /* PREVIOUS */
+  /* ========================= */
+
+  prevSlide(): void {
+
+    this.current =
+      (this.current - 1 + this.banners.length)
+      % this.banners.length
+
+  }
+
+  /* ========================= */
+  /* DOT CLICK */
+  /* ========================= */
+
+  goToSlide(index: number): void {
+
     this.current = index
+
   }
 
-  ngOnDestroy() {
+  /* ========================= */
+  /* TRACK BY */
+  /* ========================= */
+
+  trackByIndex(index: number): number {
+
+    return index
+
+  }
+
+  /* ========================= */
+  /* DESTROY */
+  /* ========================= */
+
+  ngOnDestroy(): void {
+
     if (this.intervalId) {
+
       clearInterval(this.intervalId)
+
     }
+
   }
 
 }

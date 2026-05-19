@@ -4,11 +4,20 @@
 
 .navbar{
   position:sticky;
+
   top:0;
+
   width:100%;
-  background:linear-gradient(90deg,#0f2027,#203a43,#2c5364);
+
   z-index:1000;
-  box-shadow:0 3px 10px rgba(0,0,0,0.2);
+
+  backdrop-filter:blur(14px);
+
+  background:rgba(15,23,42,0.92);
+
+  border-bottom:1px solid rgba(255,255,255,0.08);
+
+  box-shadow:0 8px 25px rgba(0,0,0,0.25);
 }
 
 /* ================= */
@@ -17,12 +26,18 @@
 
 .nav-container{
   max-width:1200px;
+
   margin:auto;
+
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
-  padding:10px 15px;
-  gap:15px;
+
+  gap:20px;
+
+  padding:12px 18px;
 }
 
 /* ================= */
@@ -31,68 +46,158 @@
 
 .logo{
   display:flex;
+
   align-items:center;
-  gap:10px;
-  color:white;
-  font-size:20px;
-  font-weight:700;
+
+  gap:12px;
+
+  text-decoration:none;
+
   cursor:pointer;
 }
 
 .logo img{
-  width:50px;
-  height:50px;
-  border-radius:12px;
+  width:52px;
+  height:52px;
+
+  border-radius:16px;
+
   object-fit:cover;
+
+  box-shadow:0 8px 20px rgba(0,0,0,0.35);
+}
+
+/* TEXT */
+
+.logo-text{
+  display:flex;
+  flex-direction:column;
+}
+
+.brand-name{
+  color:#fff;
+
+  font-size:21px;
+
+  font-weight:800;
+
+  line-height:1.1;
+}
+
+.logo-text small{
+  color:#a5b4fc;
+
+  font-size:12px;
+
+  margin-top:2px;
 }
 
 /* ================= */
-/* SEARCH (COMPONENT) */
+/* SEARCH */
 /* ================= */
 
-app-search{
+.search-box{
   flex:1;
+
   max-width:350px;
 }
 
 /* ================= */
-/* NAV LINKS */
+/* NAVIGATION */
 /* ================= */
 
 nav{
   display:flex;
-  gap:18px;
+
   align-items:center;
+
+  gap:20px;
 }
 
+/* LINKS */
+
 nav a{
-  color:white;
+  position:relative;
+
+  color:#e2e8f0;
+
   text-decoration:none;
-  font-weight:500;
+
   font-size:15px;
+
+  font-weight:600;
+
   transition:0.3s;
 }
 
-/* 🔥 FIXED HOVER */
+/* UNDERLINE */
+
+nav a::after{
+  content:'';
+
+  position:absolute;
+
+  left:0;
+  bottom:-6px;
+
+  width:0%;
+  height:2px;
+
+  background:#7c3aed;
+
+  border-radius:20px;
+
+  transition:0.3s;
+}
+
 nav a:hover{
-  color:#00e676;
+  color:#fff;
+}
+
+nav a:hover::after{
+  width:100%;
+}
+
+/* ACTIVE */
+
+.active-link{
+  color:#fff;
+}
+
+.active-link::after{
+  width:100%;
 }
 
 /* ================= */
 /* TELEGRAM BUTTON */
 /* ================= */
 
-.telegram{
-  background:#0088cc;
-  padding:7px 14px;
-  border-radius:20px;
-  color:white;
-  font-weight:bold;
-  transition:0.3s;
+.telegram-btn-nav{
+  background:linear-gradient(
+    90deg,
+    #7c3aed,
+    #9333ea
+  ) !important;
+
+  color:#fff !important;
+
+  padding:11px 18px;
+
+  border-radius:12px;
+
+  font-weight:700;
+
+  box-shadow:0 8px 20px rgba(124,58,237,0.35);
 }
 
-.telegram:hover{
-  background:#0099ff;
+.telegram-btn-nav:hover{
+  transform:translateY(-2px);
+}
+
+/* REMOVE UNDERLINE */
+
+.telegram-btn-nav::after{
+  display:none;
 }
 
 /* ================= */
@@ -101,8 +206,15 @@ nav a:hover{
 
 .menu-icon{
   display:none;
-  font-size:24px;
-  color:white;
+
+  background:none;
+
+  border:none;
+
+  color:#fff;
+
+  font-size:28px;
+
   cursor:pointer;
 }
 
@@ -110,10 +222,10 @@ nav a:hover{
 /* TABLET */
 /* ================= */
 
-@media(max-width:900px){
+@media(max-width:992px){
 
-  app-search{
-    max-width:250px;
+  .search-box{
+    max-width:260px;
   }
 
 }
@@ -126,49 +238,64 @@ nav a:hover{
 
   .nav-container{
     flex-wrap:wrap;
-    padding:10px;
+
+    gap:14px;
   }
 
-  /* LOGO SMALL */
+  /* LOGO */
 
-  .logo span{
+  .brand-name{
+    font-size:18px;
+  }
+
+  .logo-text small{
     display:none;
   }
 
   .logo img{
-    width:40px;
-    height:40px;
+    width:44px;
+    height:44px;
   }
 
-  /* SEARCH FULL WIDTH */
+  /* SEARCH */
 
-  app-search{
-    order:2;
+  .search-box{
+    order:3;
+
     width:100%;
-    flex-basis:100%;
+
     max-width:100%;
-    margin-top:10px;
   }
 
-  /* MENU BUTTON */
+  /* MENU */
 
   .menu-icon{
     display:block;
   }
 
-  /* NAV MENU */
+  /* NAVIGATION */
 
   nav{
     position:absolute;
-    top:65px;
+
+    top:78px;
     left:0;
+
     width:100%;
-    background:#1e272e;
+
+    background:#0f172a;
+
+    border-top:1px solid rgba(255,255,255,0.08);
+
     flex-direction:column;
+
+    align-items:center;
+
+    gap:18px;
+
+    padding:22px 0;
+
     display:none;
-    padding:15px 0;
-    gap:14px;
-    text-align:center;
   }
 
   nav.active{
@@ -177,6 +304,11 @@ nav a:hover{
 
   nav a{
     font-size:16px;
+  }
+
+  .telegram-btn-nav{
+    width:85%;
+    text-align:center;
   }
 
 }
@@ -188,11 +320,15 @@ nav a:hover{
 @media(max-width:480px){
 
   .nav-container{
-    gap:10px;
+    padding:10px 14px;
   }
 
   nav{
-    top:60px;
+    top:72px;
+  }
+
+  .brand-name{
+    font-size:16px;
   }
 
 }

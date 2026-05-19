@@ -1,10 +1,64 @@
 <div class="search-box">
 
-  <input 
-    type="text"
-    placeholder="🔍 Search earning apps..."
-    [(ngModel)]="searchText"
-    (input)="onInput()"
+  <!-- SEARCH INPUT -->
+
+  <div class="search-input-wrapper">
+
+    <span class="search-icon">
+      🔍
+    </span>
+
+    <input
+      type="text"
+
+      placeholder="Search earning apps..."
+
+      [(ngModel)]="searchText"
+
+      (input)="onInput()"
+
+      autocomplete="off"
+    >
+
+    <!-- CLEAR BUTTON -->
+
+    <button
+      *ngIf="searchText"
+      class="clear-btn"
+      (click)="clearSearch()"
+    >
+
+      ✕
+
+    </button>
+
+  </div>
+
+  <!-- SEARCH SUGGESTIONS -->
+
+  <div
+    class="search-suggestions"
+    *ngIf="searchText && searchText.length > 0"
   >
+
+    <div class="suggestion-item">
+
+      🔥 Trending Earning Apps
+
+    </div>
+
+    <div class="suggestion-item">
+
+      💰 Best Money Earning Apps
+
+    </div>
+
+    <div class="suggestion-item">
+
+      🎮 Play & Earn Games
+
+    </div>
+
+  </div>
 
 </div>
