@@ -2,24 +2,28 @@
 
 <div class="apps">
 
-<div *ngFor="let game of games" class="card">
+  <div *ngFor="let game of games" class="card">
 
-<a [routerLink]="['/app',game.id]" class="app-link">
+    <a [routerLink]="['/app',game.id]" class="app-link">
 
-<img [src]="'http://localhost:8080/uploads/'+game.image" class="app-img">
+      <img 
+        [src]="'https://best-earning-apps-backend.onrender.com/uploads/' + game.image"
+        class="app-img"
+        [alt]="game.appName"
+      >
 
-<h3 class="app-name">{{game.appName}}</h3>
+      <h3 class="app-name">{{game.appName}}</h3>
 
-</a>
+    </a>
 
-<p class="bonus">💰 {{game.bonus}}</p>
+    <p class="bonus">💰 {{game.bonus}}</p>
 
-<a [href]="game.downloadLink" target="_blank">
+    <a [href]="game.downloadLink" target="_blank">
 
-<button class="install-btn">Download</button>
+      <button class="install-btn">Download</button>
 
-</a>
+    </a>
 
-</div>
+  </div>
 
 </div>

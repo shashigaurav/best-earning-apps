@@ -1,44 +1,61 @@
 <div class="container">
 
-<h2 class="section-title">All Apps</h2>
+  <h2 class="section-title">All Apps</h2>
 
-<div class="apps" *ngIf="games.length>0">
+  <div class="apps" *ngIf="games.length > 0">
 
-<div *ngFor="let game of games" class="card">
+    <div *ngFor="let game of games" class="card">
 
-<div class="popular" *ngIf="game.popular">🔥 Popular</div>
+      <div class="popular" *ngIf="game.popular">
+        🔥 Popular
+      </div>
 
-<a [routerLink]="['/app',game.id]">
+      <a [routerLink]="['/app', game.id]">
 
-<img [src]="'http://localhost:8080/uploads/'+game.image">
+        <!-- UPDATED IMAGE URL -->
+        <img 
+          [src]="'https://best-earning-apps-backend.onrender.com/uploads/' + game.image"
+          [alt]="game.appName"
+        >
 
-<h3>{{game.appName}}</h3>
+        <h3>{{ game.appName }}</h3>
 
-</a>
+      </a>
 
-<div class="rating">
+      <div class="rating">
 
-<span *ngFor="let s of [1,2,3,4,5]">
-<span *ngIf="s<=game.rating">⭐</span>
-<span *ngIf="s>game.rating" class="grey">⭐</span>
-</span>
+        <span *ngFor="let s of [1,2,3,4,5]">
 
-</div>
+          <span *ngIf="s <= game.rating">⭐</span>
 
-<p class="downloads">📥 {{game.downloads}} Downloads</p>
+          <span *ngIf="s > game.rating" class="grey">⭐</span>
 
-<p class="bonus">₹{{game.bonus}}</p>
+        </span>
 
-<a [href]="game.downloadLink" target="_blank">
+      </div>
 
-<button class="install-btn">Install & Earn</button>
+      <p class="downloads">
+        📥 {{ game.downloads }} Downloads
+      </p>
 
-</a>
+      <p class="bonus">
+        ₹{{ game.bonus }}
+      </p>
 
-</div>
+      <a [href]="game.downloadLink" target="_blank">
 
-</div>
+        <button class="install-btn">
+          Install & Earn
+        </button>
 
-<p *ngIf="games.length==0">No apps available</p>
+      </a>
+
+    </div>
+
+  </div>
+
+  <p *ngIf="games.length == 0">
+    No apps available
+  </p>
 
 </div>
