@@ -25,7 +25,7 @@ export class AddGame {
   error = ""
 
   // 🔥 LIVE BACKEND
-  uploadApi = "https://best-earning-apps-backend.onrender.com/upload"
+  uploadApi = "https://best-earning-apps-backend.onrender.com/admin/upload"
   addGameApi = "https://best-earning-apps-backend.onrender.com/admin/games"
 
   constructor(private http: HttpClient) {}
@@ -45,11 +45,18 @@ export class AddGame {
 
     this.http.post<any>(this.uploadApi, formData).subscribe({
       next: (res) => {
-        this.imageName = res.fileName
+
+        this.imageName = res
         this.message = "Image uploaded ✅"
+        this.error = ""
+
       },
-      error: () => {
+
+      error: (err) => {
+
+        console.log(err)
         this.error = "Upload failed ❌"
+
       }
     })
   }
@@ -77,21 +84,28 @@ export class AddGame {
     }
 
     this.http.post(this.addGameApi, data).subscribe({
+
       next: () => {
+
         this.loading = false
         this.message = "Game Added Successfully ✅"
 
-        // 🔥 RESET FORM
+        // RESET FORM
         this.appName = ""
         this.gameTitle = ""
         this.bonus = ""
         this.keywords = ""
         this.downloadLink = ""
         this.imageName = ""
+
       },
-      error: () => {
+
+      error: (err) => {
+
+        console.log(err)
         this.loading = false
         this.error = "Failed to add game ❌"
+
       }
     })
 
