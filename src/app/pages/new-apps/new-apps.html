@@ -1,10 +1,12 @@
 <h2 class="section-title">🆕 New Apps</h2>
 
+<p>Total Games: {{ games.length }}</p>
+
 <div class="apps">
 
   <div *ngFor="let game of games" class="card">
 
-    <a [routerLink]="['/app',game.id]" class="app-link">
+    <a [routerLink]="['/app', game.id]" class="app-link">
 
       <img 
         [src]="'https://best-earning-apps-backend.onrender.com/uploads/' + game.image"
@@ -12,15 +14,21 @@
         [alt]="game.appName"
       >
 
-      <h3 class="app-name">{{game.appName}}</h3>
+      <h3 class="app-name">
+        {{ game.appName }}
+      </h3>
 
     </a>
 
-    <p class="bonus">💰 {{game.bonus}}</p>
+    <p class="bonus">
+      💰 ₹{{ game.bonus || 0 }}
+    </p>
 
     <a [href]="game.downloadLink" target="_blank">
 
-      <button class="install-btn">Download</button>
+      <button class="install-btn">
+        Download
+      </button>
 
     </a>
 

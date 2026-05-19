@@ -2,26 +2,34 @@
 
   <h2 class="section-title">All Apps</h2>
 
-  <div class="apps" *ngIf="games.length > 0">
+  <!-- DEBUG -->
+  <p>Total Games: {{ games.length }}</p>
+
+  <div class="apps">
 
     <div *ngFor="let game of games" class="card">
 
+      <!-- Popular Badge -->
       <div class="popular" *ngIf="game.popular">
         🔥 Popular
       </div>
 
-      <a [routerLink]="['/app', game.id]">
+      <!-- App Details -->
+      <a [routerLink]="['/app', game.id]" class="app-link">
 
-        <!-- UPDATED IMAGE URL -->
-        <img 
+        <img
           [src]="'https://best-earning-apps-backend.onrender.com/uploads/' + game.image"
           [alt]="game.appName"
+          class="app-img"
         >
 
-        <h3>{{ game.appName }}</h3>
+        <h3 class="app-name">
+          {{ game.appName }}
+        </h3>
 
       </a>
 
+      <!-- Rating -->
       <div class="rating">
 
         <span *ngFor="let s of [1,2,3,4,5]">
@@ -34,14 +42,17 @@
 
       </div>
 
+      <!-- Downloads -->
       <p class="downloads">
-        📥 {{ game.downloads }} Downloads
+        📥 {{ game.downloads || 0 }} Downloads
       </p>
 
+      <!-- Bonus -->
       <p class="bonus">
-        ₹{{ game.bonus }}
+        ₹{{ game.bonus || 0 }}
       </p>
 
+      <!-- Install Button -->
       <a [href]="game.downloadLink" target="_blank">
 
         <button class="install-btn">
@@ -53,9 +64,5 @@
     </div>
 
   </div>
-
-  <p *ngIf="games.length == 0">
-    No apps available
-  </p>
 
 </div>

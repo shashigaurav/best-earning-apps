@@ -1,36 +1,39 @@
 import { Component, OnInit } from '@angular/core'
-import { Game } from '../../models/game'
 import { CommonModule } from '@angular/common'
 import { RouterModule } from '@angular/router'
 import { GameService } from '../../services/game'
 
 @Component({
-selector:'app-all-apps',
-standalone:true,
-imports:[CommonModule,RouterModule],
-templateUrl:'./all-apps.html',
-styleUrls:['./all-apps.css']
+  selector: 'app-all-apps',
+  standalone: true,
+  imports: [CommonModule, RouterModule],
+  templateUrl: './all-apps.html',
+  styleUrls: ['./all-apps.css']
 })
 
-export class AllApps implements OnInit{
+export class AllApps implements OnInit {
 
-games:Game[]=[]
+  games: any[] = []
 
-constructor(private gameService:GameService){}
+  constructor(private gameService: GameService) {}
 
-ngOnInit():void{
+  ngOnInit(): void {
 
-this.gameService.getGames().subscribe({
-next:(data:Game[])=>{
-this.games=data
-console.log("All Apps Data:",data)
-},
-error:(err)=>{
-console.error("API Error:",err)
-}
+    this.gameService.getGames().subscribe({
+      next: (data: any[]) => {
 
-})
+        console.log("All Apps Data:", data)
 
-}
+        this.games = data
+
+      },
+
+      error: (err) => {
+        console.error("API Error:", err)
+      }
+
+    })
+
+  }
 
 }
