@@ -1,6 +1,5 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-
   "version": 1,
 
   "cli": {
@@ -32,9 +31,7 @@
 
             "tsConfig": "tsconfig.app.json",
 
-            "outputPath": "dist/bestearningapps-frontend",
-
-           
+            "outputPath": "dist/bestearningapps-frontend/browser",
 
             "assets": [
 
@@ -57,23 +54,13 @@
 
             ],
 
-          
-
             "styles": [
               "src/styles.css"
-            ],
-
-            
-
-            "inlineStyleLanguage": "css"
+            ]
 
           },
 
-         
-
           "configurations": {
-
-          
 
             "production": {
 
@@ -87,13 +74,9 @@
 
               "namedChunks": false,
 
-              "vendorChunk": false,
-
-              "buildOptimizer": true
+              "vendorChunk": false
 
             },
-
-        
 
             "development": {
 
@@ -115,8 +98,6 @@
 
         },
 
-      
-
         "serve": {
 
           "builder": "@angular/build:dev-server",
@@ -126,14 +107,14 @@
             "development": {
 
               "buildTarget":
-                "bestearningapps-frontend:build:development"
+              "bestearningapps-frontend:build:development"
 
             },
 
             "production": {
 
               "buildTarget":
-                "bestearningapps-frontend:build:production"
+              "bestearningapps-frontend:build:production"
 
             }
 
