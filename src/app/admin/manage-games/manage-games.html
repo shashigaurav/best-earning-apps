@@ -24,14 +24,23 @@
   >
 
     <thead>
+
       <tr>
+
         <th>ID</th>
+
         <th>Image</th>
+
         <th>App Name</th>
+
         <th>Bonus</th>
+
         <th>Category</th>
+
         <th>Action</th>
+
       </tr>
+
     </thead>
 
     <tbody>
@@ -39,14 +48,16 @@
       <tr *ngFor="let game of games">
 
         <!-- ID -->
-        <td>{{ game.id }}</td>
+        <td>
+          {{ game.id }}
+        </td>
 
         <!-- IMAGE -->
         <td>
 
           <img
             *ngIf="game.image"
-            [src]="game.image"
+            [src]="'https://best-earning-apps-backend.onrender.com/' + game.image"
             alt="app image"
             width="60"
             height="60"

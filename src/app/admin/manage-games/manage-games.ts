@@ -16,7 +16,7 @@ export class ManageGamesComponent implements OnInit {
 
   games: Game[] = [];
 
-  loading = true;
+  loading = false;
 
   errorMessage = '';
 
@@ -30,15 +30,20 @@ export class ManageGamesComponent implements OnInit {
 
   }
 
+  /* LOAD GAMES */
   loadGames(): void {
 
     this.loading = true;
+
+    this.errorMessage = '';
+
+    this.successMessage = '';
 
     this.gameService.getGames().subscribe({
 
       next: (data: Game[]) => {
 
-        console.log('Games:', data);
+        console.log('Games API Response:', data);
 
         this.games = data || [];
 
@@ -48,7 +53,7 @@ export class ManageGamesComponent implements OnInit {
 
       error: (err) => {
 
-        console.error(err);
+        console.error('LOAD ERROR:', err);
 
         this.errorMessage = 'Failed to load games ❌';
 
@@ -60,9 +65,12 @@ export class ManageGamesComponent implements OnInit {
 
   }
 
+  /* DELETE GAME */
   deleteGame(id: number): void {
 
-    if (!confirm('Delete this game?')) {
+    const confirmDelete = confirm('Delete this game?');
+
+    if (!confirmDelete) {
       return;
     }
 
@@ -70,13 +78,18 @@ export class ManageGamesComponent implements OnInit {
 
       next: () => {
 
-        this.successMessage = 'Game deleted successfully ✅';
+        this.successMessage =
+          'Game deleted successfully ✅';
+
+        this.errorMessage = '';
 
         this.loadGames();
 
       },
 
-      error: () => {
+      error: (err) => {
+
+        console.error('DELETE ERROR:', err);
 
         this.errorMessage = 'Delete failed ❌';
 
