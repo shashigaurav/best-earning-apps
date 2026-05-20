@@ -24,9 +24,12 @@ export class AddGame {
   message = ""
   error = ""
 
-  // 🔥 LIVE BACKEND
-  uploadApi = "https://best-earning-apps-backend.onrender.com/admin/upload"
-  addGameApi = "https://best-earning-apps-backend.onrender.com/admin/games"
+  // LIVE BACKEND
+  uploadApi =
+    "https://best-earning-apps-backend.onrender.com/admin/upload"
+
+  addGameApi =
+    "https://best-earning-apps-backend.onrender.com/admin/games"
 
   constructor(private http: HttpClient) {}
 
@@ -35,60 +38,99 @@ export class AddGame {
 
     const file = event.target.files[0]
 
-    if(!file){
+    if (!file) {
+
       this.error = "Select image ❌"
       return
+
     }
 
     const formData = new FormData()
+
     formData.append("file", file)
 
-    this.http.post<any>(this.uploadApi, formData).subscribe({
-      next: (res) => {
+    this.message = ""
+    this.error = ""
+
+    this.http.post(this.uploadApi, formData, {
+      responseType: 'text'
+    }).subscribe({
+
+      next: (res: string) => {
+
+        console.log("UPLOAD RESPONSE:", res)
 
         this.imageName = res
+
         this.message = "Image uploaded ✅"
+
         this.error = ""
 
       },
 
       error: (err) => {
 
-        console.log(err)
+        console.log("UPLOAD ERROR:", err)
+
         this.error = "Upload failed ❌"
 
       }
+
     })
+
   }
 
   /* ADD GAME */
   addGame() {
 
-    if(!this.appName || !this.downloadLink){
+    if (!this.appName || !this.downloadLink) {
+
       this.error = "Fill required fields ❌"
       return
+
+    }
+
+    if (!this.imageName) {
+
+      this.error = "Upload image first ❌"
+      return
+
     }
 
     this.loading = true
+
     this.message = ""
     this.error = ""
 
     const data = {
+
       appName: this.appName,
+
       gameTitle: this.gameTitle,
+
       bonus: this.bonus,
+
       image: this.imageName,
+
       keywords: this.keywords,
+
       downloadLink: this.downloadLink,
+
       category: this.category
+
     }
+
+    console.log("GAME DATA:", data)
 
     this.http.post(this.addGameApi, data).subscribe({
 
       next: () => {
 
         this.loading = false
+
         this.message = "Game Added Successfully ✅"
+
+        this.error = ""
 
         // RESET FORM
         this.appName = ""
@@ -102,11 +144,14 @@ export class AddGame {
 
       error: (err) => {
 
-        console.log(err)
+        console.log("ADD GAME ERROR:", err)
+
         this.loading = false
+
         this.error = "Failed to add game ❌"
 
       }
+
     })
 
   }
