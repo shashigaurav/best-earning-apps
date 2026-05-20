@@ -5,14 +5,14 @@ import { Game } from '../../models/game';
 import { GameService } from '../../services/game';
 
 @Component({
-  selector: 'manage-games',
+  selector: 'app-manage-games',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './manage-games.html',
   styleUrls: ['./manage-games.css']
 })
 
-export class ManageGames implements OnInit {
+export class ManageGamesComponent implements OnInit {
 
   games: Game[] = [];
 

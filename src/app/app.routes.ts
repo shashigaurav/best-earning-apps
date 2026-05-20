@@ -16,7 +16,7 @@ import { AppDetails } from './pages/app-details/app-details'
 import { Login } from './admin/login/login'
 import { Dashboard } from './admin/dashboard/dashboard'
 import { AddGame } from './admin/add-game/add-game'
-import { ManageGames } from './admin/manage-games/manage-games'
+import { ManageGamesComponent } from './admin/manage-games/manage-games'
 
 /* ========================= */
 /* GUARDS */
@@ -91,7 +91,7 @@ export const routes: Routes = [
 
   {
     path: 'admin/manage-games',
-    component: ManageGames,
+    component: ManageGamesComponent,
 
     canActivate: [
       AdminGuard
