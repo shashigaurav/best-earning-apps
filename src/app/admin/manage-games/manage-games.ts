@@ -1,82 +1,88 @@
-import { Component, OnInit } from '@angular/core'
-import { CommonModule } from '@angular/common'
-import { Game } from '../../models/game'
-import { GameService } from '../../services/game'
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { Game } from '../../models/game';
+import { GameService } from '../../services/game';
 
 @Component({
-  selector:'manage-games',
-  standalone:true,
-  imports:[CommonModule],
-  templateUrl:'./manage-games.html',
-  styleUrls:['./manage-games.css']
+  selector: 'manage-games',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './manage-games.html',
+  styleUrls: ['./manage-games.css']
 })
 
-export class ManageGames implements OnInit{
+export class ManageGames implements OnInit {
 
-  games:Game[]=[]
-  loading=true
-  errorMessage=""
-  successMessage=""
+  games: Game[] = [];
 
-  constructor(private gameService:GameService){}
+  loading = true;
 
-  ngOnInit(){
-    this.loadGames()
+  errorMessage = '';
+
+  successMessage = '';
+
+  constructor(private gameService: GameService) {}
+
+  ngOnInit(): void {
+
+    this.loadGames();
+
   }
 
-  loadGames(){
+  loadGames(): void {
 
-    this.loading=true
+    this.loading = true;
 
     this.gameService.getGames().subscribe({
 
-      next:(data:any)=>{
+      next: (data: Game[]) => {
 
-        console.log("Games:",data)
+        console.log('Games:', data);
 
-        this.games = data || []
+        this.games = data || [];
 
-        this.loading = false
+        this.loading = false;
 
       },
 
-      error:(err)=>{
+      error: (err) => {
 
-        console.error(err)
+        console.error(err);
 
-        this.errorMessage="Failed to load games ❌"
+        this.errorMessage = 'Failed to load games ❌';
 
-        this.loading=false
+        this.loading = false;
 
       }
 
-    })
+    });
 
   }
 
-  deleteGame(id:number){
+  deleteGame(id: number): void {
 
-    if(!confirm("Delete this game?")){
-      return
+    if (!confirm('Delete this game?')) {
+      return;
     }
 
     this.gameService.deleteGame(id).subscribe({
 
-      next:()=>{
+      next: () => {
 
-        this.successMessage="Game deleted successfully ✅"
+        this.successMessage = 'Game deleted successfully ✅';
 
-        this.loadGames()
+        this.loadGames();
 
       },
 
-      error:()=>{
+      error: () => {
 
-        this.errorMessage="Delete failed ❌"
+        this.errorMessage = 'Delete failed ❌';
 
       }
 
-    })
+    });
 
   }
 

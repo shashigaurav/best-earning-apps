@@ -20,7 +20,7 @@
   <!-- TABLE -->
   <table
     class="games-table"
-    *ngIf="!loading && games && games.length > 0"
+    *ngIf="!loading && games.length > 0"
   >
 
     <thead>
@@ -74,7 +74,7 @@
 
           <button
             class="delete-btn"
-            (click)="deleteGame(game.id)"
+            (click)="deleteGame(game.id!)"
           >
             Delete
           </button>
