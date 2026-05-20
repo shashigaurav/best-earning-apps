@@ -18,13 +18,18 @@
   </p>
 
   <!-- TABLE -->
-  <table class="games-table" *ngIf="!loading && games && games.length > 0">
+  <table
+    class="games-table"
+    *ngIf="!loading && games && games.length > 0"
+  >
 
     <thead>
       <tr>
         <th>ID</th>
-        <th>App</th>
+        <th>Image</th>
+        <th>App Name</th>
         <th>Bonus</th>
+        <th>Category</th>
         <th>Action</th>
       </tr>
     </thead>
@@ -33,30 +38,47 @@
 
       <tr *ngFor="let game of games">
 
+        <!-- ID -->
         <td>{{ game.id }}</td>
 
-        <td class="app-cell">
+        <!-- IMAGE -->
+        <td>
 
-          <!-- IMAGE -->
           <img
             *ngIf="game.image"
-            [src]="'https://best-earning-apps-backend.onrender.com/uploads/' + game.image"
+            [src]="game.image"
             alt="app image"
+            width="60"
+            height="60"
           >
-
-          <span>{{ game.appName }}</span>
 
         </td>
 
-        <td>₹{{ game.bonus }}</td>
-
+        <!-- APP NAME -->
         <td>
+          {{ game.appName }}
+        </td>
+
+        <!-- BONUS -->
+        <td>
+          ₹{{ game.bonus }}
+        </td>
+
+        <!-- CATEGORY -->
+        <td>
+          {{ game.category }}
+        </td>
+
+        <!-- ACTION -->
+        <td>
+
           <button
             class="delete-btn"
             (click)="deleteGame(game.id)"
           >
             Delete
           </button>
+
         </td>
 
       </tr>
@@ -65,8 +87,8 @@
 
   </table>
 
-  <!-- EMPTY STATE -->
-  <p *ngIf="!loading && games && games.length === 0">
+  <!-- EMPTY -->
+  <p *ngIf="!loading && games.length === 0">
     No games found
   </p>
 

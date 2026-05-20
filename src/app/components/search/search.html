@@ -10,13 +10,9 @@
 
     <input
       type="text"
-
       placeholder="Search earning apps..."
-
       [(ngModel)]="searchText"
-
       (input)="onInput()"
-
       autocomplete="off"
     >
 
@@ -41,19 +37,28 @@
     *ngIf="searchText && searchText.length > 0"
   >
 
-    <div class="suggestion-item">
+    <div
+      class="suggestion-item"
+      (click)="searchText='Trending Earning Apps'; onInput()"
+    >
 
       🔥 Trending Earning Apps
 
     </div>
 
-    <div class="suggestion-item">
+    <div
+      class="suggestion-item"
+      (click)="searchText='Best Money Earning Apps'; onInput()"
+    >
 
       💰 Best Money Earning Apps
 
     </div>
 
-    <div class="suggestion-item">
+    <div
+      class="suggestion-item"
+      (click)="searchText='Play & Earn Games'; onInput()"
+    >
 
       🎮 Play & Earn Games
 
