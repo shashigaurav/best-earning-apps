@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { Game } from '../../models/game';
+import { GameService } from '../../services/game';
 
 @Component({
   selector: 'app-manage-games',
@@ -17,30 +19,73 @@ export class ManageGamesComponent implements OnInit {
   errorMessage = '';
   successMessage = '';
 
+  constructor(private gameService: GameService) {}
+
   ngOnInit(): void {
+    this.loadGames();
+  }
 
-    this.loading = false;
+  loadGames(): void {
 
-    this.games = [
-      {
-        id: 1,
-        appName: 'TEST APP',
-        gameTitle: 'TEST GAME',
-        bonus: '100',
-        image: 'test.png',
-        keywords: 'test',
-        downloadLink: 'https://google.com',
-        category: 'TEST CATEGORY',
-        rating: 5,
-        downloads: 1000,
-        popular: true
+    this.loading = true;
+    this.errorMessage = '';
+    this.successMessage = '';
+
+    this.gameService.getGames().subscribe({
+
+      next: (data: Game[]) => {
+
+        console.log('API DATA:', data);
+
+        this.games = [...data];
+
+        this.loading = false;
+
+      },
+
+      error: (err) => {
+
+        console.error('LOAD ERROR:', err);
+
+        this.errorMessage = 'Failed to load games ❌';
+
+        this.loading = false;
+
       }
-    ];
+
+    });
 
   }
 
   deleteGame(id: number): void {
-    alert('Delete Test: ' + id);
+
+    const confirmDelete = confirm('Delete this game?');
+
+    if (!confirmDelete) {
+      return;
+    }
+
+    this.gameService.deleteGame(id).subscribe({
+
+      next: () => {
+
+        this.successMessage = 'Game deleted successfully ✅';
+        this.errorMessage = '';
+
+        this.loadGames();
+
+      },
+
+      error: (err) => {
+
+        console.error('DELETE ERROR:', err);
+
+        this.errorMessage = 'Delete failed ❌';
+
+      }
+
+    });
+
   }
 
 }
