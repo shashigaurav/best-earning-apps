@@ -11,44 +11,41 @@ import { GameService } from '../../services/game';
   templateUrl: './manage-games.html',
   styleUrls: ['./manage-games.css']
 })
-
 export class ManageGamesComponent implements OnInit {
 
   games: Game[] = [];
 
   loading = false;
-
   errorMessage = '';
-
   successMessage = '';
 
   constructor(private gameService: GameService) {}
 
   ngOnInit(): void {
-
     this.loadGames();
-
   }
 
-  /* LOAD GAMES */
   loadGames(): void {
 
     this.loading = true;
-
     this.errorMessage = '';
-
     this.successMessage = '';
+
+    console.log('Loading started...');
 
     this.gameService.getGames().subscribe({
 
-      next: (data: Game[]) => {
+      next: (data: any) => {
 
         console.log('Games API Response:', data);
 
         this.games = data || [];
 
+        console.log('Games Count:', this.games.length);
+
         this.loading = false;
 
+        console.log('Loading finished:', this.loading);
       },
 
       error: (err) => {
@@ -59,13 +56,13 @@ export class ManageGamesComponent implements OnInit {
 
         this.loading = false;
 
+        console.log('Loading finished with error:', this.loading);
       }
 
     });
 
   }
 
-  /* DELETE GAME */
   deleteGame(id: number): void {
 
     const confirmDelete = confirm('Delete this game?');
@@ -78,13 +75,10 @@ export class ManageGamesComponent implements OnInit {
 
       next: () => {
 
-        this.successMessage =
-          'Game deleted successfully ✅';
-
+        this.successMessage = 'Game deleted successfully ✅';
         this.errorMessage = '';
 
         this.loadGames();
-
       },
 
       error: (err) => {
@@ -92,7 +86,6 @@ export class ManageGamesComponent implements OnInit {
         console.error('DELETE ERROR:', err);
 
         this.errorMessage = 'Delete failed ❌';
-
       }
 
     });
