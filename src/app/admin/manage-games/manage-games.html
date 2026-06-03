@@ -2,10 +2,6 @@
 
   <h2>Manage Games</h2>
 
-  <!-- DEBUG -->
-  <p><b>Loading:</b> {{ loading }}</p>
-  <p><b>Games Count:</b> {{ games.length }}</p>
-
   <!-- LOADING -->
   <p *ngIf="loading" class="loading">
     Loading games...
@@ -22,7 +18,10 @@
   </p>
 
   <!-- TABLE -->
-  <table class="games-table" *ngIf="!loading && games.length > 0">
+  <table
+    class="games-table"
+    *ngIf="!loading && games.length > 0"
+  >
 
     <thead>
       <tr>
@@ -36,34 +35,48 @@
     </thead>
 
     <tbody>
+
       <tr *ngFor="let game of games">
 
-        <td>{{ game.id }}</td>
-
+        <!-- ID -->
         <td>
-          <img
-            *ngIf="game.image"
-            [src]="'https://best-earning-apps-backend.onrender.com/' + game.image"
-            alt="app image"
-            width="60"
-            height="60">
+          {{ game.id }}
         </td>
 
-        <td>{{ game.appName }}</td>
-
-        <td>₹{{ game.bonus }}</td>
-
-        <td>{{ game.category }}</td>
-
+        <!-- IMAGE -->
         <td>
+          {{ game.image }}
+        </td>
+
+        <!-- APP NAME -->
+        <td>
+          {{ game.appName }}
+        </td>
+
+        <!-- BONUS -->
+        <td>
+          ₹{{ game.bonus }}
+        </td>
+
+        <!-- CATEGORY -->
+        <td>
+          {{ game.category }}
+        </td>
+
+        <!-- ACTION -->
+        <td>
+
           <button
             class="delete-btn"
-            (click)="deleteGame(game.id!)">
+            (click)="deleteGame(game.id)"
+          >
             Delete
           </button>
+
         </td>
 
       </tr>
+
     </tbody>
 
   </table>
