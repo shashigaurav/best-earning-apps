@@ -1,21 +1,89 @@
-<h1>TEST PAGE</h1>
+<div class="manage-container">
 
-<p>Loading = {{ loading }}</p>
+  <h2>Manage Games</h2>
 
-<p>Total Games = {{ games.length }}</p>
+  <!-- LOADING -->
+  <p *ngIf="loading" class="loading">
+    Loading games...
+  </p>
 
-<button (click)="loading = false">
-  Force Loading False
-</button>
+  <!-- ERROR -->
+  <p *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </p>
 
-<button (click)="games = [{id:1, appName:'TEST'} as any]">
-  Add Test Game
-</button>
+  <!-- SUCCESS -->
+  <p *ngIf="successMessage" class="success">
+    {{ successMessage }}
+  </p>
 
-<div *ngIf="!loading">
-  LOADING FALSE
-</div>
+  <!-- TABLE -->
+  <table
+    class="games-table"
+    *ngIf="!loading && games.length > 0"
+  >
 
-<div *ngIf="games.length > 0">
-  GAMES FOUND
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Image</th>
+        <th>App Name</th>
+        <th>Bonus</th>
+        <th>Category</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let game of games">
+
+        <!-- ID -->
+        <td>
+          {{ game.id }}
+        </td>
+
+        <!-- IMAGE -->
+        <td>
+          {{ game.image }}
+        </td>
+
+        <!-- APP NAME -->
+        <td>
+          {{ game.appName }}
+        </td>
+
+        <!-- BONUS -->
+        <td>
+          ₹{{ game.bonus }}
+        </td>
+
+        <!-- CATEGORY -->
+        <td>
+          {{ game.category }}
+        </td>
+
+        <!-- ACTION -->
+        <td>
+
+          <button
+            class="delete-btn"
+            (click)="deleteGame(game.id)"
+          >
+            Delete
+          </button>
+
+        </td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+  <!-- EMPTY -->
+  <p *ngIf="!loading && games.length === 0">
+    No games found
+  </p>
+
 </div>
