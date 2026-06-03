@@ -39,13 +39,17 @@ export class ManageGamesComponent implements OnInit {
 
         console.log('Games API Response:', data);
 
-        this.games = data || [];
+        setTimeout(() => {
 
-        console.log('Games Count:', this.games.length);
+          this.games = Array.isArray(data) ? data : [];
 
-        this.loading = false;
+          this.loading = false;
 
-        console.log('Loading finished:', this.loading);
+          console.log('Games Count:', this.games.length);
+          console.log('Loading finished:', this.loading);
+
+        }, 0);
+
       },
 
       error: (err) => {
@@ -57,6 +61,7 @@ export class ManageGamesComponent implements OnInit {
         this.loading = false;
 
         console.log('Loading finished with error:', this.loading);
+
       }
 
     });
@@ -79,6 +84,7 @@ export class ManageGamesComponent implements OnInit {
         this.errorMessage = '';
 
         this.loadGames();
+
       },
 
       error: (err) => {
@@ -86,6 +92,7 @@ export class ManageGamesComponent implements OnInit {
         console.error('DELETE ERROR:', err);
 
         this.errorMessage = 'Delete failed ❌';
+
       }
 
     });
