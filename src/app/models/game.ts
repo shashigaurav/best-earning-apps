@@ -1,15 +1,20 @@
 export interface Game {
 
-  id: number;
+  id: number
+  appName: string
+  gameTitle: string   // rehne do (backend compatible)
 
-  appName: string;
-  gameTitle: string;
+  bonus: string       // rehne do (convert kar lenge)
+  image: string
+  keywords: string    // ignore kar sakte ho
 
-  bonus: string;
-  image: string;
-  keywords: string;
+  downloadLink: string
+  category: string
 
-  downloadLink: string;
-  category: string;
+  rating: number
+  downloads: number
+  popular: boolean
+
+  slug?: string       // 👈 optional bana do (SEO ke liye)
 
 }
