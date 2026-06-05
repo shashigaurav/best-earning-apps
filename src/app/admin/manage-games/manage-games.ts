@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { Game } from '../../models/game';
@@ -14,17 +14,16 @@ import { GameService } from '../../services/game';
 export class ManageGamesComponent implements OnInit {
 
   games: Game[] = [];
-
   loading = false;
   errorMessage = '';
   successMessage = '';
 
-  constructor(private gameService: GameService) {}
+  constructor(
+    private gameService: GameService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
-
-    alert('ManageGamesComponent Loaded');
-
     this.loadGames();
   }
 
@@ -38,21 +37,10 @@ export class ManageGamesComponent implements OnInit {
 
       next: (data: Game[]) => {
 
-        console.log('API DATA:', data);
-
         this.games = data;
-
         this.loading = false;
 
-        alert(
-          'Games=' +
-          this.games.length +
-          ' Loading=' +
-          this.loading
-        );
-
-        console.log('AFTER ASSIGN:', this.games.length);
-        console.log('LOADING:', this.loading);
+        this.cdr.detectChanges();
 
       },
 
@@ -60,11 +48,10 @@ export class ManageGamesComponent implements OnInit {
 
         console.error('LOAD ERROR:', err);
 
-        alert('API ERROR');
-
         this.errorMessage = 'Failed to load games ❌';
-
         this.loading = false;
+
+        this.cdr.detectChanges();
 
       }
 
@@ -74,29 +61,18 @@ export class ManageGamesComponent implements OnInit {
 
   deleteGame(id: number): void {
 
-    const confirmDelete = confirm('Delete this game?');
-
-    if (!confirmDelete) {
+    if (!confirm('Delete this game?')) {
       return;
     }
 
     this.gameService.deleteGame(id).subscribe({
 
       next: () => {
-
-        this.successMessage = 'Game deleted successfully ✅';
-        this.errorMessage = '';
-
         this.loadGames();
-
       },
 
       error: (err) => {
-
         console.error('DELETE ERROR:', err);
-
-        this.errorMessage = 'Delete failed ❌';
-
       }
 
     });
