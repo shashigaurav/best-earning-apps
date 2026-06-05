@@ -13,7 +13,7 @@
   <p *ngIf="successMessage" class="success">
     {{ successMessage }}
   </p>
-
+<h3>Total Games: {{ games.length }}</h3>
   <table class="games-table" *ngIf="!loading && games.length > 0">
 
     <thead>
