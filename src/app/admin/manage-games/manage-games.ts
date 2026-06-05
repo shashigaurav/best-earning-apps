@@ -22,10 +22,15 @@ export class ManageGamesComponent implements OnInit {
   constructor(private gameService: GameService) {}
 
   ngOnInit(): void {
+
+    console.log('ManageGamesComponent Loaded');
+
     this.loadGames();
   }
 
   loadGames(): void {
+
+    console.log('loadGames() called');
 
     this.loading = true;
     this.errorMessage = '';
@@ -36,10 +41,16 @@ export class ManageGamesComponent implements OnInit {
       next: (data: Game[]) => {
 
         console.log('API DATA:', data);
+        console.log('DATA LENGTH:', data.length);
 
-        this.games = [...data];
+        this.games = data;
+
+        console.log('AFTER ASSIGN:', this.games.length);
+        console.log('GAMES ARRAY:', this.games);
 
         this.loading = false;
+
+        console.log('LOADING:', this.loading);
 
       },
 
@@ -50,6 +61,8 @@ export class ManageGamesComponent implements OnInit {
         this.errorMessage = 'Failed to load games ❌';
 
         this.loading = false;
+
+        console.log('LOADING:', this.loading);
 
       }
 
