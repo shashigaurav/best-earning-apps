@@ -39,8 +39,6 @@ export class AppDetails implements OnInit {
 
   relatedGames: Game[] = []
 
-  backendUrl =
-    'https://best-earning-apps-backend.onrender.com/uploads/'
 
   loading: boolean = true
 
@@ -181,7 +179,7 @@ export class AppDetails implements OnInit {
       property: 'og:image',
 
       content:
-        this.backendUrl + this.game.image
+         this.game.image
 
     })
 
@@ -215,7 +213,7 @@ export class AppDetails implements OnInit {
         "GameApplication",
 
       "image":
-        this.backendUrl + this.game.image,
+         this.game.image,
 
       "offers": {
 

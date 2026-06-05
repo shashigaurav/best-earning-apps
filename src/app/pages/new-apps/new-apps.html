@@ -8,11 +8,10 @@
 
     <a [routerLink]="['/app', game.id]" class="app-link">
 
-      <img 
-        [src]="'https://best-earning-apps-backend.onrender.com/uploads/' + game.image"
+      <img
+        [src]="game.image"
         class="app-img"
-        [alt]="game.appName"
-      >
+        [alt]="game.appName">
 
       <h3 class="app-name">
         {{ game.appName }}

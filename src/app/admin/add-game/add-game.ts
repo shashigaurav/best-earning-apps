@@ -1,7 +1,7 @@
-import { Component } from '@angular/core'
-import { FormsModule } from '@angular/forms'
-import { HttpClient } from '@angular/common/http'
-import { CommonModule } from '@angular/common'
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'add-game',
@@ -12,147 +12,86 @@ import { CommonModule } from '@angular/common'
 })
 export class AddGame {
 
-  appName = ""
-  gameTitle = ""
-  bonus = ""
-  keywords = ""
-  downloadLink = ""
-  category = "all apps"
+  appName = '';
+  gameTitle = '';
+  bonus = '';
+  imageUrl = '';
+  keywords = '';
+  downloadLink = '';
+  category = 'all apps';
 
-  imageName = ""
-  loading = false
-  message = ""
-  error = ""
-
-  // LIVE BACKEND
-  uploadApi =
-    "https://best-earning-apps-backend.onrender.com/admin/upload"
+  loading = false;
+  message = '';
+  error = '';
 
   addGameApi =
-    "https://best-earning-apps-backend.onrender.com/admin/games"
+    'https://best-earning-apps-backend.onrender.com/admin/games';
 
   constructor(private http: HttpClient) {}
 
-  /* IMAGE UPLOAD */
-  uploadImage(event: any) {
-
-    const file = event.target.files[0]
-
-    if (!file) {
-
-      this.error = "Select image ❌"
-      return
-
-    }
-
-    const formData = new FormData()
-
-    formData.append("file", file)
-
-    this.message = ""
-    this.error = ""
-
-    this.http.post(this.uploadApi, formData, {
-      responseType: 'text'
-    }).subscribe({
-
-      next: (res: string) => {
-
-        console.log("UPLOAD RESPONSE:", res)
-
-        this.imageName = res
-
-        this.message = "Image uploaded ✅"
-
-        this.error = ""
-
-      },
-
-      error: (err) => {
-
-        console.log("UPLOAD ERROR:", err)
-
-        this.error = "Upload failed ❌"
-
-      }
-
-    })
-
-  }
-
-  /* ADD GAME */
   addGame() {
 
     if (!this.appName || !this.downloadLink) {
 
-      this.error = "Fill required fields ❌"
-      return
+      this.error = 'Fill required fields ❌';
+      return;
 
     }
 
-    if (!this.imageName) {
+    if (!this.imageUrl) {
 
-      this.error = "Upload image first ❌"
-      return
+      this.error = 'Enter image URL ❌';
+      return;
 
     }
 
-    this.loading = true
+    this.loading = true;
 
-    this.message = ""
-    this.error = ""
+    this.message = '';
+    this.error = '';
 
     const data = {
 
       appName: this.appName,
-
       gameTitle: this.gameTitle,
-
       bonus: this.bonus,
-
-      image: this.imageName,
-
+      image: this.imageUrl,
       keywords: this.keywords,
-
       downloadLink: this.downloadLink,
-
       category: this.category
 
-    }
-
-    console.log("GAME DATA:", data)
+    };
 
     this.http.post(this.addGameApi, data).subscribe({
 
       next: () => {
 
-        this.loading = false
+        this.loading = false;
 
-        this.message = "Game Added Successfully ✅"
+        this.message = 'Game Added Successfully ✅';
+        this.error = '';
 
-        this.error = ""
-
-        // RESET FORM
-        this.appName = ""
-        this.gameTitle = ""
-        this.bonus = ""
-        this.keywords = ""
-        this.downloadLink = ""
-        this.imageName = ""
+        this.appName = '';
+        this.gameTitle = '';
+        this.bonus = '';
+        this.imageUrl = '';
+        this.keywords = '';
+        this.downloadLink = '';
+        this.category = 'all apps';
 
       },
 
       error: (err) => {
 
-        console.log("ADD GAME ERROR:", err)
+        console.log('ADD GAME ERROR:', err);
 
-        this.loading = false
+        this.loading = false;
 
-        this.error = "Failed to add game ❌"
+        this.error = 'Failed to add game ❌';
 
       }
 
-    })
+    });
 
   }
 

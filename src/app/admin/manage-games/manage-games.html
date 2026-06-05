@@ -1,11 +1,61 @@
-<h1>TEST PAGE</h1>
+<div class="manage-container">
 
-<p>Loading: {{ loading }}</p>
+  <h2>Manage Games</h2>
 
-<p>Total Games: {{ games.length }}</p>
+  <p *ngIf="loading" class="loading">
+    Loading games...
+  </p>
 
-<hr>
+  <p *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </p>
 
-<div *ngFor="let game of games">
-  {{ game.id }} - {{ game.appName }} - {{ game.bonus }}
+  <p *ngIf="successMessage" class="success">
+    {{ successMessage }}
+  </p>
+
+  <table
+    class="games-table"
+    *ngIf="!loading && games.length > 0">
+
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>App Name</th>
+        <th>Bonus</th>
+        <th>Category</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let game of games">
+
+        <td>{{ game.id }}</td>
+
+        <td>{{ game.appName }}</td>
+
+        <td>₹{{ game.bonus }}</td>
+
+        <td>{{ game.category }}</td>
+
+        <td>
+          <button
+            class="delete-btn"
+            (click)="deleteGame(game.id!)">
+            Delete
+          </button>
+        </td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+  <p *ngIf="!loading && games.length === 0">
+    No games found
+  </p>
+
 </div>

@@ -12,10 +12,10 @@
     <div class="app-image">
 
       <img
-        [src]="backendUrl + game.image"
-        [alt]="game.appName + ' earning app screenshot'"
-        loading="lazy"
-      >
+  [src]="game.image"
+  [alt]="game.appName + ' earning app screenshot'"
+  loading="lazy"
+>
 
     </div>
 
@@ -303,29 +303,29 @@
     <div class="related">
 
       <div
-        *ngFor="let g of relatedGames"
-        class="card"
-      >
+  *ngFor="let g of relatedGames"
+  class="card"
+>
 
-        <a [routerLink]="['/app', g.id]">
+  <a [routerLink]="['/app', g.id]">
 
-          <img
-            [src]="backendUrl + g.image"
-            [alt]="g.appName"
-            loading="lazy"
-          >
+    <img
+      [src]="g.image"
+      [alt]="g.appName"
+      loading="lazy"
+    >
 
-          <h3>
-            {{g.appName}}
-          </h3>
+    <h3>
+      {{g.appName}}
+    </h3>
 
-          <p class="related-bonus">
-            ₹{{g.bonus}} Bonus
-          </p>
+    <p class="related-bonus">
+      ₹{{g.bonus}} Bonus
+    </p>
 
-        </a>
+  </a>
 
-      </div>
+</div>
 
     </div>
 

@@ -35,9 +35,6 @@ export class Home implements OnInit {
   newGames: Game[] = []
   trendingGames: Game[] = []
 
-  backendUrl =
-    'https://best-earning-apps-backend.onrender.com/uploads/'
-
   @ViewChild('trending')
   trending!: ElementRef
 
