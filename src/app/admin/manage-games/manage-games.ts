@@ -24,6 +24,7 @@ export class ManageGamesComponent implements OnInit {
   ngOnInit(): void {
 
     console.log('ManageGamesComponent Loaded');
+    alert('ManageGamesComponent Loaded');
 
     this.loadGames();
   }
@@ -43,10 +44,11 @@ export class ManageGamesComponent implements OnInit {
         console.log('API DATA:', data);
         console.log('DATA LENGTH:', data.length);
 
+        alert('API SUCCESS: ' + data.length);
+
         this.games = data;
 
         console.log('AFTER ASSIGN:', this.games.length);
-        console.log('GAMES ARRAY:', this.games);
 
         this.loading = false;
 
@@ -58,11 +60,11 @@ export class ManageGamesComponent implements OnInit {
 
         console.error('LOAD ERROR:', err);
 
+        alert('API ERROR');
+
         this.errorMessage = 'Failed to load games ❌';
 
         this.loading = false;
-
-        console.log('LOADING:', this.loading);
 
       }
 
