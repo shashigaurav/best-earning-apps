@@ -2,7 +2,6 @@
 
   <h2 class="section-title">All Apps</h2>
 
-  <!-- DEBUG -->
   <p>Total Games: {{ games.length }}</p>
 
   <div class="apps">
@@ -18,9 +17,10 @@
       <a [routerLink]="['/app', game.id]" class="app-link">
 
         <img
-          [src]="'https://best-earning-apps-backend.onrender.com/uploads/' + game.image"
+          [src]="game.image"
           [alt]="game.appName"
           class="app-img"
+          loading="lazy"
         >
 
         <h3 class="app-name">
@@ -33,11 +33,8 @@
       <div class="rating">
 
         <span *ngFor="let s of [1,2,3,4,5]">
-
           <span *ngIf="s <= game.rating">⭐</span>
-
           <span *ngIf="s > game.rating" class="grey">⭐</span>
-
         </span>
 
       </div>
